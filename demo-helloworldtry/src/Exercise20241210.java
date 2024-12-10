@@ -15,14 +15,14 @@ public class Exercise20241210 {
     System.out.println(totalAmount);
 
 
-
     int mathScore = 73;
     int englishScore = 60;
     int historyScore = 61;
 
     double averageScore = (mathScore + englishScore + historyScore) / 3.0;
-
     System.out.println(averageScore);
+
+    
 
   }
 
