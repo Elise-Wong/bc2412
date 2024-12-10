@@ -18,7 +18,7 @@ public class DemoDataType {
         int x2 = 3 /2;
         System.out.println(x2);
 
-        double x3 = 3 /2;
+        double x3 = 3 / 2;
         System.out.println(x3);
 
         double x4= 3.0 / 2;
