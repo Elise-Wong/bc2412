@@ -32,12 +32,12 @@ public class DemoDataType {
         byte maxByte = 127;
         byte minByte = -128;
 
-        maxByte = maxByte + 8; //not safe
+        maxByte = 8; //maxByte + 8; not safe
 
         short maxSshort = 32_767;
         short minShort = -32_768;
 
-        minShort = minShort - 8; //not safe
+        minShort = -8; //minShort - 8; not safe
 
         long l1 = 2_147_483_647;
         long l2 = -2_147_483_648;
@@ -51,11 +51,11 @@ public class DemoDataType {
         double d1 = 10.2;
         double d2 = 10.2d;
         float f1 = 10.2f;
-        float f2 = 11.2222222; //not safe
+        float f2 = 11.2222222f; //11.2222222; not safe
 
         float f4 = 10.2f;
         double d3 = f4;
-        float f5 = d3; //not safe
+        float f5 = 3f; //d3; not safe
 
         double d4 = 10.2f; 
 
@@ -63,10 +63,10 @@ public class DemoDataType {
         System.out.println(d5); //not safe
 
 
-        char c = ‘x’;
-        char c2 = ‘1’;
-        char c3 = ‘!’;
-        char c4 = ‘ ’;
+        char c = 'x';
+        char c2 = '1';
+        char c3 = '!';
+        char c4 = ' ';
 
         boolean b = true;
         boolean b8 = false;
@@ -74,11 +74,44 @@ public class DemoDataType {
         boolean isSlmoker = false;
         int age = 66;
         boolean isEderly = age > 65;
-        System.out.println(isElderly);
+        System.out.println(isEderly);
 
         int age2 = 18;
         boolean isAdult = age2 >= 18;
         System.out.println(isAdult);
+
+        char q = 'a';
+        int u = q;
+        System.out.println(u);
+
+        char q2 = 97;
+        System.out.println(q2);
+
+        char q3 = 48;
+        System.out.println(q3);
+
+        char q4 = 65;
+        System.out.println(q4);
+        int u4 = q4;
+        System.out.println(u4);
+
+        char q5 = 10000; 
+        System.out.println(q5); 
+
+        char q6 = '你';
+        int u6 = q6;
+        System.out.println(u6); 
+
+        long l10 = 'a';
+        float f10 = 'a';
+        double d10 = 'a';
+
+        float f11 = 97;
+        double d11 = 97;
+
+
+
+
 
     }
 }

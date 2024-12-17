@@ -14,8 +14,10 @@ public class ClassWork20241212Java3 {
     } else {
       System.out.println("error");
     }
-      
     
+    
+      
+
     
 
     System.out.print("Input a year: ");
