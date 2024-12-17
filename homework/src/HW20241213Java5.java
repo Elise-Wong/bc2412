@@ -11,7 +11,7 @@ public class HW20241213Java5 {
 
     if(str.charAt(i) == 'c'){
       isCharExist = true;
-      System.out.println("Found");
+      System.out.println(i+"Found");
     }else{
       System.out.println("Not Found");
     }
