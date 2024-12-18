@@ -7,6 +7,7 @@ public class ClassWork20241212Java3 {
     int numberOfDaysInMonth = 0;
     String monthOfName = "Unknown";
     
+
     System.out.print("Input a month number: ");
     int month = input.nextInt(); // assume 1 - 12
     if (month >= 1 && month <= 12){
@@ -15,9 +16,14 @@ public class ClassWork20241212Java3 {
       System.out.println("error");
     }
     
+    switch (month){
+    case 1:
+    System.out.println("Jan");
+    case 2:
+    System.out.println("Feb");
     
       
-
+    }
     
 
     System.out.print("Input a year: ");

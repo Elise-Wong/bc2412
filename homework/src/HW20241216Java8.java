@@ -11,10 +11,11 @@ public class HW20241216Java8 {
         secondMax = max;
         max = nums[i];
       } else if (nums[i] > secondMax && nums[i] < max){
-        max = nums[i];
+        secondMax = nums[i];
       }
       if (secondMax != Integer.MIN_VALUE){
         System.out.println(secondMax);
+        break;
       }else{
 
 

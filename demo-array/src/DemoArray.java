@@ -178,16 +178,21 @@ public class DemoArray {
 
 
         char[] arr12 = new char[]{'p','a','p','b','a','p'};
-        int count = 0;
-        
+        char maxNumChar = ' ';
+        int[] counters = new int[26];
+       
         for(int i = 0; i < arr12.length; i++){
-            if(arr12.charAt(i) == 'p'){
-                count++;
+            counters[arr12[i] - 'a']++;
+        }
+        int max2 = Integer.MIN_VALUE;
+        for (int i = 0; i < counters.length; i++){
+            if(counters[i] > max2){
+                maxNumChar = (char)(i + 97);
+                max2 = counters[i];
             }
+        }
+         System.out.println(maxNumChar);
+            
             
         }
-
-        System.out.println(count);
-
     }
-}
