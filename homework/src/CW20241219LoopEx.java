@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 public class CW20241219LoopEx {
   public static void main(String[] args){
@@ -74,7 +75,9 @@ public class CW20241219LoopEx {
       //08 x
       String s8a = "abcba";
       String s8b = "cba";
+      boolean included = false;
       for (int i = 0;  i < s8b.length(); i++){
+        included = true;
         
         System.out.println("s8b is a substring.");
         
@@ -94,9 +97,14 @@ public class CW20241219LoopEx {
       System.out.println("count=2");
 
 
-      //10 x
+      //10
       String[] arr10 = new String[] {"akc", "xxx", "x", "xbx", "mkx"};
-
+      char t1 = 'x';
+      char r1 = 'k';
+      for (int i = 0; i < arr10.length; i++){
+        arr10[i] = arr10[i].replace(t1, r1);
+      }
+      System.out.println(Arrays.toString(arr10));
 
 
       //11 x
@@ -120,37 +128,36 @@ public class CW20241219LoopEx {
 
       //13 x
       String s13 = "lrlaudbucp";
-      int x = 0;
+      
       int totalScore = 0;
-      int value = 0;
+      
+
+      for (char x : s13.toCharArray()){
+        int value = 0;
+      
 
       switch (x){
-        case 1:
-          if (s13.equals("l")){
+        case 'l':
             x = 1;
-          }
           break;
-        case 2:
-          if (s13.equals("r")){
+        case 'r':
             x = 3;
-          }
           break;
-        case 3:
-          if (s13.equals("d")){
+        case 'd':
           x = 2;
-          }
           break;
-        case 4:
-          if (s13.equals("u")){
+        case 'u':
           x = 4;
-          } else{
-            x = -1;
-          }
           break;
+        default:
+          x = 0;
+          //if sum = 0 --> -1
       }
+      }
+
       for (int i = 0; i < s13.length(); i++);
         
-        totalScore += value;
+        totalScore += 0; //value
 
       System.out.println(totalScore);
 
@@ -177,7 +184,7 @@ public class CW20241219LoopEx {
       arr16[2] = 0.6f;
       
 
-      //17
+      //17 *
       Float y1a = y1;
       Float y2a = y2;
       Float y3a = y3;
@@ -185,12 +192,10 @@ public class CW20241219LoopEx {
       double d2 = y2a.doubleValue();
       double d3 = y3a.doubleValue();
 
-
-
       BigDecimal bd1 = BigDecimal.valueOf(0.1);
       BigDecimal bd2 = BigDecimal.valueOf(d1);
       BigDecimal bd3 = BigDecimal.valueOf(d2);
-      BigDecimal bd4 = BigDecimal.valueOf(d3);
+      BigDecimal bd4 = BigDecimal.valueOf(0.6);
       BigDecimal bd5 = bd1.add(bd2);
       BigDecimal bd6 = bd1.add(bd3);
       BigDecimal bd7 = bd1.add(bd4);
@@ -201,21 +206,58 @@ public class CW20241219LoopEx {
       //18 xx
       String[] arr18 = new String[] {"Steve", "Tommy", "Katie", "Tommy", "Lydia"};
       String target = "Tommy";
+      boolean find = false;
+      int countName = 0;
+      for (int i = 0; i < arr18.length; i++){
+        find = true;
+        countName++;
+      }
 
-      System.out.println("count name=2");
+      System.out.println("**" + countName);
 
 
-      //19 xx
+      //19 **
       String s19 = "40289";
+      char[] arr19 = new char[s19.length()];  //char array for doing swap
+      for (int i = 0; i < s19.length(); i++){
+        arr19[i] = s19.charAt(i);
+      }
 
-     
-
-      System.out.println("49280");
+      int minIndex = -1;
+      int maxIndex = -1;
+      int min = Integer.MAX_VALUE;
+      int max = Integer.MIN_VALUE;
+      for (int i = 0; i < arr19.length; i++){
+        if (arr19[i] > max){
+          max = arr19[i];
+          maxIndex = i;
+        }
+        if (arr19[i] < min){
+          min = arr19[i];
+          minIndex = i;
+        }
+      }
+      char temp19 = ' '; //swap
+      temp19 = arr19[maxIndex];
+      arr19[maxIndex] = arr19[minIndex];
+      arr19[minIndex] = temp19;
+      
+      System.out.println(String.valueOf(arr19));
 
 
       //20 xx
       String[] arr20 = new String[] {"python", "array", "programming", "java", "bootcamp"};
 
+      
+      boolean ffind = false;
+      int countTerms = 0;
+      for (int i = 0; i < arr20.length; i++){
+        ffind = true;
+      
+        countTerms++;
+      }
+
+      System.out.println(countTerms);
       System.out.println("longest=programming");
 
 
