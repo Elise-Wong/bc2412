@@ -192,7 +192,24 @@ public class DemoArray {
             }
         }
          System.out.println(maxNumChar);
-            
-            
+       
+
+
+         int[] arr20 = new int[] {20, -20, 90, 50, -40};
+         int tempp = 0;
+         for(int i = 0; i < arr20.length - 1; i++){
+            for(int j = 0; j < arr20.length - i - 1; j++){ 
+                if (arr20[j] > arr20[j + 1]){
+                    tempp = arr20[j];
+                    arr20[j] = arr20[j + 1];
+                    arr20[j + 1] = tempp;
+                }
+               }
+         }
+         System.out.println(Arrays.toString(arr20));
+
+
+
+         
         }
     }
