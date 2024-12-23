@@ -128,31 +128,34 @@ public class CW20241219LoopEx {
 
       //13 x
       String s13 = "lrlaudbucp";
+      StringBuilder output = new StringBuilder();
       
       int totalScore = 0;
       
 
       for (char x : s13.toCharArray()){
         int value = 0;
+        
       
 
       switch (x){
         case 'l':
-            x = 1;
+          value = 1;
           break;
         case 'r':
-            x = 3;
+          value = 3;
           break;
         case 'd':
-          x = 2;
+          value = 2;
           break;
         case 'u':
-          x = 4;
+          value = 4;
           break;
         default:
-          x = 0;
+          value = -1;
           //if sum = 0 --> -1
       }
+      output.append(value).append(" ");
       }
 
       for (int i = 0; i < s13.length(); i++);
@@ -160,11 +163,20 @@ public class CW20241219LoopEx {
         totalScore += 0; //value
 
       System.out.println(totalScore);
+      System.out.println(output.toString().trim());
 
 
       //14 x
+      long l1 = 1l;
+      long l2 = 4L;
+      long l3 = 9L;
+      long l4 = -4L;
+      long[] arr14 = new long[4];
+      arr14[0] = 1l;
+      arr14[1] = 4L;
+      arr14[2] = 9L;
       
-      int[] arr14 = new int[]{1, 4, 9, -4};
+      
       System.out.println(arr14);
 
       
