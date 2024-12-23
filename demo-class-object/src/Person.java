@@ -2,6 +2,7 @@ public class Person {
     private String name;
     private int age;
     private String email;
+    private char gender; //F,M,!
 
     public Person(String name, int age, String email){
         this.name = name;
@@ -19,6 +20,18 @@ public class Person {
 
     public String getEmail(){
         return this.email;
+    }
+
+    public int getNameLength(){
+        return this.name.length();
+    }
+
+    public boolean isElderly(){
+        return this.age > 65;
+    }
+
+    public boolean isMale(){
+        return this.gender == 'M' ? true : false;
     }
 
     public void setAge(int age){
@@ -65,6 +78,11 @@ public class Person {
 
         String s1 = "hello";
         String[] strings = new String[] {s1, "world"};
+
+        System.out.println(p1.isMale());  //false is due to no futher new information in p1
+        System.out.println(p1.getName().length()); //7
+        System.out.println(p1.getNameLength());  //7
+        System.out.println(p1.isElderly()); // false
         
 
 
