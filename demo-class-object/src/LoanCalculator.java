@@ -13,7 +13,7 @@ public class LoanCalculator {
     this.numOfYears = numOfYears;
   }
 
-  //Getter
+  //Getter - instance method
   public double totalSimpleInterestAfterYears1(){
     return BigDecimal.valueOf(this.principle)
     .multiply(BigDecimal.valueOf(this.annualInverestRate))
@@ -29,6 +29,7 @@ public class LoanCalculator {
     .doubleValue();
   }
 
+  //
   public static double totalSimpleInterestAfterYears2(double principle, double annualInverestRate, int numOfYears){
     return BigDecimal.valueOf(principle)
     .multiply(BigDecimal.valueOf(annualInverestRate))

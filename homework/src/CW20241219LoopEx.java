@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 
 public class CW20241219LoopEx {
@@ -207,7 +208,7 @@ public class CW20241219LoopEx {
       BigDecimal bd1 = BigDecimal.valueOf(0.1);
       BigDecimal bd2 = BigDecimal.valueOf(d1);
       BigDecimal bd3 = BigDecimal.valueOf(d2);
-      BigDecimal bd4 = BigDecimal.valueOf(0.6);
+      BigDecimal bd4 = BigDecimal.valueOf(0.3);
       BigDecimal bd5 = bd1.add(bd2);
       BigDecimal bd6 = bd1.add(bd3);
       BigDecimal bd7 = bd1.add(bd4);
