@@ -24,8 +24,8 @@ public class LoanCalculator {
   public double totalCompoundInterestAfterYears1(){
     return BigDecimal.valueOf(this.principle)
     .multiply(BigDecimal.valueOf(
-      (Math.pow((1.0 + this.annualInverestRate / 100.0), this.numOfYears)))
-    .subtract(BigDecimal.valueOf(this.principle)))
+      (Math.pow((1.0 + this.annualInverestRate), this.numOfYears))))
+    .subtract(BigDecimal.valueOf(this.principle))
     .doubleValue();
   }
 
@@ -45,7 +45,7 @@ public class LoanCalculator {
   }
 
   public static void main(String[] args){
-    LoanCalculator l1 = new LoanCalculator(10000, 4, 5);
+    LoanCalculator l1 = new LoanCalculator(10000, 0.04, 5);
     System.out.println(l1.totalCompoundInterestAfterYears1());
 
     System.out.println(LoanCalculator.totalSimpleInterestAfterYears2(10000, .04, 1));
