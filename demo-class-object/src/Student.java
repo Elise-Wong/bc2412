@@ -23,20 +23,24 @@ public class Student {
 
 
   //Setter
-  public static int getCandy(int noOfCandy){
+  public static int getCandy(int candyCount){
+    
     int score = 0;
-
-    for (int i = 0; i < 20 ; i++){
-
+    int candyC = 0;
+    while(candyCount < 20){
+      
     
     if (score >= 80){
-      return noOfCandy = 2 ;
+      return candyCount = 2 ;
     } else if (score >= 60 && score >= 79){
-      return noOfCandy = 1 ;
+      return candyCount = 1 ;
     } else{
-      return noOfCandy = 0;
+      return candyCount = 0;
+      
     }
+    
   }
+   return candyCount;
   }
 
 
