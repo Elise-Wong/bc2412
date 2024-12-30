@@ -6,6 +6,11 @@ public class Item {
   private double price;
   private int quantity;
 
+  //empty constructor
+  public Item(){
+
+  }
+
 
   //Constructor
   public Item (String product, double price, int quantity){
@@ -29,18 +34,16 @@ public class Item {
   }
   
 
-  //Setter
+  //Setter - instance method
   public double totalAmount(){
     return BigDecimal.valueOf(this.price)
     .multiply(BigDecimal.valueOf(this.quantity))
     .doubleValue();
   }
   
+  
   public static void main(String[] args){
-    Item i1 = new Item("diamond", 8888.8, 9);
-    Item i2 = new Item("jade", 333.3, 28);
 
-    System.out.println(i2.totalAmount());
 
   } 
 
