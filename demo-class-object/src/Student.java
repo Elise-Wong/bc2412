@@ -3,13 +3,15 @@ import java.math.BigDecimal;
 public class Student {
   //Attributes
   private int score;
-  private int candy;
+  private int totalCandy;
+  private int receivedCandy;
 
 
   //Constructor
   public Student(int score){
     this.score = score;
-    this.candy = candy;
+    this.totalCandy = totalCandy;
+    this.receivedCandy = 0;
   }
 
 
@@ -19,28 +21,45 @@ public class Student {
     return this.score;
   }
 
+  public int getTotalCandy(){
+    return this.totalCandy;
+  }
+
+  public int getReceivedCandy(){
+    return this.receivedCandy;
+  }
+
 
 
 
   //Setter
-  public static int getCandy(int candyCount){
+  //static
+  public static int getCandy(){
     
     int score = 0;
-    int candyC = 0;
-    while(candyCount < 20){
-      
+    int totalCandy = 20;
+    int receivedCandy = 0;
+
+    //totalCandy - candyCount = remainCandy
     
-    if (score >= 80){
-      return candyCount = 2 ;
-    } else if (score >= 60 && score >= 79){
-      return candyCount = 1 ;
+    
+      
+    if (receivedCandy < totalCandy){
+    if (score >= 80 && receivedCandy + 2 <= totalCandy){
+      receivedCandy = 2;
+      return 2;
+    } else if (score >= 60 && score >= 79 && receivedCandy + 1 <= totalCandy){
+      receivedCandy = 1;
+      return 1;
     } else{
-      return candyCount = 0;
+      receivedCandy = 0;
+      return 0;
       
     }
     
   }
-   return candyCount;
+   return receivedCandy;
+   
   }
 
 
@@ -52,8 +71,17 @@ public class Student {
     Student s5 = new Student(60);
     Student s6 = new Student(59);
 
+    Student[] students = new Student[]{s1,s2,s3,s4,s5,s6};
 
-    System.out.println(s2.getCandy(89));
+    for (int i = 0; i < students.length; i++){
+      
+      System.out.println(students[i].getScore());
+      int result = Student.getCandy();
+      System.out.println(result);
+    }
+  
+
+   
 
 
   }

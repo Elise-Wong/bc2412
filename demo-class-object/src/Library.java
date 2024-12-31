@@ -1,7 +1,5 @@
 public class Library {
   //Attributes
-  private String title;
-  private String author;
   private Book[] books; 
 
 
@@ -31,6 +29,7 @@ public class Library {
 
 
   //Setter
+  //instand method, new lib, share array
   public void addBook(Book book){
     Book[] newArr = new Book[this.books.length + 1];
     for (int i = 0; i < this.books.length; i++){
@@ -46,7 +45,7 @@ public class Library {
   }
 
   //Search a sub=string of the title
-  public Book[] search
+  public Book[] search;
 
   public void removBook(Book book){
     int idx = 0;
@@ -60,6 +59,7 @@ public class Library {
     }
     this.books = newArr;
   }
+  }
 
 
   public static void main(String[] args){
@@ -68,7 +68,22 @@ public class Library {
     Book b2 = new Book("1984", "George Orwell");
     Book b3 = new Book("Harry Potter", "JK Rowling");
 
-    System.out.println(b1.getAuthor());
 
+    Library l1 = new Library();
+    l1.addBook(b3);
+    l1.addBook(b2);
+    l1.addBook(b1);
+
+    for (Book book : this.books){
+      if (book.getOrderId() == orderId){
+        return order.getItems();
+
+    for (int i = 0; i < l1.length(); i++);
+
+    System.out.println(l1.books[0].getTitle());
+
+
+      }
   }
 }
+  }
