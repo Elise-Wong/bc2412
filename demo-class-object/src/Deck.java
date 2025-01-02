@@ -5,7 +5,6 @@ public class Deck {
   private Poker[] pokers;
   
 
-
   //Constructor
   //for, while, if/else
   public Deck(){
@@ -18,12 +17,7 @@ public class Deck {
         }
       }
 
-    
-
   }
-
-  
-
 
 
 

@@ -10,7 +10,6 @@ public class Poker {
   public static final char[] SUITES = new char[]{'D','C','H','S'};
 
 
-
   //Contrucbitor
   public Poker(char rank, char suite){
     this.rank = rank;
