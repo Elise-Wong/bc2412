@@ -14,7 +14,7 @@ public class Shape {
   
   //getter
   public String getColor(){
-  return this.color;
+    return this.color;
   }
   
   

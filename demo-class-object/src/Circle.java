@@ -46,14 +46,14 @@ public class Circle { //Blueprint
 
   
   public static void main(String[] args){
-    Circle c1 = new Circle(3.0, "red");
+    Circle1 c1 = new Circle1(3.0, "red");
 
     //presentation
     System.out.println(c1.calculateArea());
     System.out.println(c1.Area());
 
     //formula
-    System.out.println(Circle.Area2(3.0));
+    System.out.println(Circle1.Area2(3.0));
 
 
 
