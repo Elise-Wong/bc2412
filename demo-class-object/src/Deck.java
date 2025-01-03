@@ -36,6 +36,11 @@ public class Deck {
 
     System.out.println(Math.PI); //public & static final
 
+
+    Card card = new Card('A', 'S');
+    Card c2 = new Card('A', 'S');
+    
+
   }
 
 }

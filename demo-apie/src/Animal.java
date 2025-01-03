@@ -19,8 +19,8 @@ public class Animal {
   
   
     //setter
-    public void walk(){
-      System.out.println("Cat is walking...");
+    public void eat(){
+      System.out.println("Animal is walking...");
     }
   
   

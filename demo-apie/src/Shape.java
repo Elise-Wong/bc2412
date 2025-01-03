@@ -1,4 +1,4 @@
-public class Shape {
+public abstract class Shape {
   //Attributes
   private String color;
 
@@ -18,9 +18,9 @@ public class Shape {
   }
   
   
-   //setter
-   public void come(){
-     System.out.println("xx is coming...");
+  //setter
+  public void come(){
+    System.out.println("xx is coming...");
   }
   
   

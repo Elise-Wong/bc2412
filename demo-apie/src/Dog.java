@@ -4,7 +4,7 @@ public class Dog extends Animal{
   
   //construtor
   public Dog(String name){
-  super(name);
+    super(name);
   
   }
 

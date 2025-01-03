@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class Square extends Shape {
   //Attributes
@@ -11,9 +12,32 @@ public class Square extends Shape {
     super(color);
     this.weight = weight;
     this.height = height;
-    
   }
-  
+
+  @Override
+  public boolean equals(Object obj){
+    if (this == obj)
+      return true;
+    if (!(obj instanceof Square))
+      return false;
+    Square square = (Square) obj;
+      return Objects.equals(square.getWeight(), this.weight)
+          && Objects.equals(square.getColor(), super.getColor());
+    }
+
+  @Override
+  public int hashCode(){
+    return Objects.hash(this.weight, super.getColor());
+  }
+
+  @Override
+  public String toString(){
+    return "Square["
+          + "weight=" + this.weight
+          + ", color=" + super.getColor()
+          + "]";
+  }
+
   
   //getter
   public double getWeight(){
@@ -40,9 +64,13 @@ public class Square extends Shape {
   public static void main(String[] args) {
     Square s1 = new Square("yellow", 5.0, 5.0);
     System.out.println(s1.getColor() + "," + s1.Area());
-    
+  
+    Square s2 = new Square("yellow", 5.0, 5.0);
+    System.out.println(s1);
+    System.out.println(s1.equals(s2));
+    System.out.println(s1.hashCode());
+    System.out.println(s2.hashCode());
+
   }
   
   }
-
-
