@@ -1,4 +1,4 @@
-public class Hero {
+public abstract class Hero {
   //Attributes
   private Role role;
   private int level;
@@ -12,8 +12,8 @@ public class Hero {
 
   
   //construtor
-  public Hero(){
-    this.level = 1;
+  public Hero(int level){
+    this.level = level;
     //this.maxHp = maxHp;
     //this.maxMp = maxMp;
     this.hp = hp;
@@ -51,12 +51,11 @@ public class Hero {
     }
   }
 
-    
-  
+
 
 
   public static void main(String[] args) {
-    Hero hero = new Hero(10);
+
 
     for (int i = 0; i < 10; i++){
       hero.defeatMonster();
