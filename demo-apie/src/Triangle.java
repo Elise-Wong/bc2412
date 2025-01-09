@@ -51,7 +51,7 @@ public class Triangle extends Shape{
     return this.height;
   }
 
-  public double Area(){
+  public double areaa(){
   return BigDecimal.valueOf(this.weight)
   .multiply(BigDecimal.valueOf(this.height))
   .divide(BigDecimal.valueOf(2.0))
@@ -68,7 +68,7 @@ public class Triangle extends Shape{
   
   public static void main(String[] args) {
     Triangle t1 = new Triangle("red", 5.0, 13.0);
-    System.out.println(t1.getColor() + "," + t1.Area());
+    System.out.println(t1.getColor() + "," + t1.areaa());
     
     Triangle t2 = new Triangle("red", 5.0, 13.0);
     System.out.println(t1);

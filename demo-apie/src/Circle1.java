@@ -49,7 +49,7 @@ public class Circle1 extends Shape{
 
 
 
-  public double Area(){
+  public double areaa(){
     return BigDecimal.valueOf(this.radius)
     .multiply(BigDecimal.valueOf(this.radius))
     .multiply(BigDecimal.valueOf(Math.PI))
@@ -65,13 +65,16 @@ public class Circle1 extends Shape{
   
   public static void main(String[] args) {
     Circle1 c1 = new Circle1("white", 9.0);
-    System.out.println(c1.getColor() + "," + c1.Area());
+    System.out.println(c1.getColor() + "," + c1.areaa());
 
     Circle1 c2 = new Circle1("white", 9.0);
     System.out.println(c1);
     System.out.println(c1.equals(c2));
     System.out.println(c1.hashCode());
     System.out.println(c2.hashCode());
+
+    Circle1 c3 = new Circle1(Color.YELLOW, 3.0);
+
     
   }
 }

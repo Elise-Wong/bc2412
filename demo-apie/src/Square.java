@@ -48,7 +48,7 @@ public class Square extends Shape {
     return this.height;
   }
 
-  public double Area(){
+  public double areaa(){
     return BigDecimal.valueOf(this.weight)
     .multiply(BigDecimal.valueOf(this.height))
     .doubleValue();
@@ -63,7 +63,7 @@ public class Square extends Shape {
   
   public static void main(String[] args) {
     Square s1 = new Square("yellow", 5.0, 5.0);
-    System.out.println(s1.getColor() + "," + s1.Area());
+    System.out.println(s1.getColor() + "," + s1.areaa());
   
     Square s2 = new Square("yellow", 5.0, 5.0);
     System.out.println(s1);

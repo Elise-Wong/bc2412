@@ -22,7 +22,7 @@ public class Pig extends Animal{
   public Pig(){
   }
 
-  // implicityly calling super() 隱
+  // implicityly calling super() 隱含call緊 Parent
 
   //implicitly extend Object.class (Object.equals() is for checking if they are same memory object)
   @Override
