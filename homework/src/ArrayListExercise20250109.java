@@ -213,7 +213,15 @@ public class ArrayListExercise20250109 {
     //System.out.println(studentSet2s.getName() + studentSet2s.getId());
 
     //09b
-    
+    String sN = "Not Found";
+    for (Student s1 : stundentSet1s){
+      for (Student s2 : stundentSet2s){
+        if (s1.getName().equals(studentSet2s)){
+          sN = s1.getName();
+          break;
+        }
+      }
+    }
 
     //09c
     studentSet1s.addAll(studentSet2s);
