@@ -34,16 +34,16 @@ public class ArrayListExercise20250109 {
     //02b
     System.out.println(stores.contains(("Grapes")));
 
-    //02c
+    //02c x
     boolean founded = false;
     for (String store : stores){
       if (!(store.contains("Grapes"))){
-        founded = true;
+        founded = false;
         break;
       }
     }
     stores.add("Grapes");
-    
+    System.out.println(stores);
 
     //02d
     stores.remove("Mango");
