@@ -4,12 +4,20 @@ public class DemoArrayList {
   public static void main(String[] args){
     //Many string = String[]
 
-    //variable length....長度可變7
-    ArrayList<String> strings = new ArrayList<>();
-    strings.add("abc");
-    strings.add("ijk");
-    System.out.println(strings.size()); //2
-    System.out.println(strings.get(1)); //ijk
+    //Array: fixed length
+    String[] ss1 = new String[3];
+    String[] ss2 = new String[]{"abc","cde","xyz"};
+    //ss2 is an address of the array, ss2[0]
+    //they are continued connected.
+    System.out.println(ss2[1]);//"cde"
+
+    //ArrayList: variable length....長度可變
+    //Underslying data structre --> array
+    ArrayList<String> strings = new ArrayList<>(); //arr with size 0.
+    strings.add("abc"); //arr with size 1.
+    strings.add("ijk"); //arr with size 2.
+    System.out.println(strings.size()); //2; arr length
+    System.out.println(strings.get(1)); //ijk; jump to the elements with index 1 directly
     ///System.out.println(strings.get(2)); //java.lang.IndexOutOfBoundsException //becos more than 0 & 1, no 2 here
 
     //Book[]

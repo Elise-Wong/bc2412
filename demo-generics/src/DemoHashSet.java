@@ -17,20 +17,11 @@ public class DemoHashSet {
     strings.remove("XYZ");
     System.out.println(strings.size()); //2
 
-    //no remove by index method
+    //no remove by index method  ...xxx
     //HashSet 底層 is not array
     //知道正確位置要幹掉它, 用arraylist
-    int targetRemoveIndex = 1;
-    String targetRemoveString = null;
-    int index = 0;
-    for (String s : strings){
-      if (targetRemoveIndex == index){
-        targetRemoveString = s;
-        break;
-      }
-      index++;
-    }
-    strings.remove(targetRemoveString);
+    //HashSet cannot be ordering natually, because its underlying data structure is not an array
+
 
 
 
