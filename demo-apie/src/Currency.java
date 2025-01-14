@@ -47,6 +47,12 @@ public enum Currency {
     } return "";
   }
 
+  //ch18
+  @Override
+  public String toString(){
+    return String.format("Currency [desc=%s]", this.desc);
+  }
+
 
   public static void main(String[] args) {
     System.out.println(Currency.getDescription(Currency.USD)); //US Dollar

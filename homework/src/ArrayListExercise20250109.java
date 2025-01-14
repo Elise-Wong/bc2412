@@ -34,7 +34,7 @@ public class ArrayListExercise20250109 {
     //02b
     System.out.println(stores.contains(("Grapes")));
 
-    //02c x
+    //02c
     boolean founded = false;
     for (String store : stores){
       if (!(store.contains("Grapes"))){
@@ -66,18 +66,18 @@ public class ArrayListExercise20250109 {
     ns.add(6,(50));
     System.out.println(ns.get(0) + "," + ns.get(1) + "," + ns.get(2) + "," + ns.get(3) + "," + ns.get(4) + "," + ns.get(5) + "," + ns.get(6));
 
-    //03b
-  //  int targetRemoveIndex = 1;
-  //  String targetRemoveString = null;
-  //  int index = 0;
-  //  for (String s : ns){
-  //    if(targetRemoveIndex == index){
-  //      targetRemoveString = s;
-  //      break;
-  //    }
-  //    index++;
-  //  }
-  //  ns.remove(targetRemoveString);
+    //03b x
+    int targetRemoveIndex = 1;
+    String targetRemoveString = null;
+    int index = 0;
+    //for (String s : ns){  //int s : ns
+    //  if(targetRemoveIndex == index){
+    //    targetRemoveString = s;
+    //     break;
+    //  }
+    //  index++;
+    //}
+    ns.remove(targetRemoveString);
 
     //03c x
     System.out.println(ns.size());
@@ -140,10 +140,19 @@ public class ArrayListExercise20250109 {
     set2.add(60);
 
     //06d x
+    boolean found = false;
+    for (int ss : set1){
+      for (int sss : set2)
+      if (ss == sss){
+        found = true;
+        break;
+      }
+    }
+    
+
 
     //06e x
-
-    //System.out.println
+    System.out.println("*"+ set2 + set1);
 
 
     //07a

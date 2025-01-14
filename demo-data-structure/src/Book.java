@@ -14,6 +14,11 @@ public class Book {
   }
 
   
+  public void setName(String name){
+    this.name = name;
+  }
+
+  
     //一定要寫好equals
     @Override
     public boolean equals(Object obj){  //就算object不一樣, 都要當同一本書

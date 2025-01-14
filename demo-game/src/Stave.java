@@ -1,4 +1,4 @@
-public class Wand extends Weapon{
+public class Stave extends Weapon{
   //Attributes
 
 
