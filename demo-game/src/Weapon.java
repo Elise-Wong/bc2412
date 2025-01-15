@@ -5,14 +5,19 @@ public enum Weapon {
   ;
   //Attributes
   private final String desc;
-  private static final int[][] BOW_TAB = new int[4][3];
-  private static final int[][] STA_TAB = new int[4][3];
-  private static final int[][] SWO_TAB = new int[4][3];
+  private static final int[][] BOW_TAB = new int[3][3];
+  private static final int[][] STA_TAB = new int[3][3];
+  private static final int[][] SWO_TAB = new int[3][3];
 
   private static final int ROW_PA = 0;
-  private static final int ROW_PD = 1;
-  private static final int ROW_MA = 2;
-  private static final int ROW_MD = 3;
+  private static final int ROW_MA = 1;
+  private static final int ROW_CC = 2;
+
+  BOW_TAB[ROW_PA] = new int [] {400,600,900};
+  BOW_TAB[ROW_MA] = new int [] {400,600,900};
+  BOW_TAB[ROW_CC] = new int [] {1000,1500,2250};
+
+
 
 
   //Constructor

@@ -25,10 +25,23 @@ public class DemoPQ{
     }
 
       //another class
-      public static class SortByAge implements Comparator<Person>{ //static!!!!
+      public static class SortByAge implements Comparator<DemoPQ.Person>{ //static!!!!
         @Override
         public int compare(Person p1, Person p2){
         return p1.getAge() > p2.getAge() ? -1 : 1;
+        }
+      }
+
+      //another class
+      public static class SortByElderly implements Comparator<DemoPQ.Person>{ //static!!!!
+        @Override
+        public int compare(Person p1, Person p2){
+        //Early Return
+        if (p1.isElderly())
+          return  -1;
+        if (p2.isElderly())
+          return 1;
+        return -1; //base return
         }
       }
 
@@ -65,6 +78,8 @@ public class DemoPQ{
     pq2.add(new Person(12));
     pq2.add(new Person(21));
     System.out.println(pq2);
+    //may overuse for PQ in poll...is so painful
+    System.out.println(pq2.poll());
 
 
 
