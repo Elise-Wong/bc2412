@@ -8,23 +8,29 @@ public class ExceptionEx3_20250114 {
   // 2. Pass the age number into a static method checkAge(). 
   // This method will throw a custom exception InvalidAgeException if the age < 18; otherwise, print "Age X is accepted".
   // 3. For the method caller, handle the potential exception by printing "Age is invalid. Please input again later."
+  
+  // code here for class...
   public static class InvalidAgeException extends RuntimeException{
 
   }
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    String age = scanner.nextLine();
-
-    String str = "Age X is accepted";
-    int x = 0;
+    System.out.println("Please input an age for checking:");
+    String input = scanner.nextLine();
+    scanner.close();
+    
+   // code here for caller...
     try{
-   //   age = Integer.parseInt(str);
-    checkAge(x);
+      int age = Integer.parseInt(input);
+      checkAge(age);
+      System.out.println("Age " + age + " is accepted.");
     } catch (NumberFormatException e){
       System.out.println("Error: Please enter a valid number.");
+    } catch (InvalidAgeException e){
+      System.out.println("Age is invalid. Please input again later.");
     }
-    System.out.println("Age is invalid. Please input again later.");
+    
 
   }
 
@@ -34,11 +40,7 @@ public class ExceptionEx3_20250114 {
         throw new InvalidAgeException();
       }
       return age;
-      //System.out.println("Age X is accepted");
     }
-
-
-
 
 
 }

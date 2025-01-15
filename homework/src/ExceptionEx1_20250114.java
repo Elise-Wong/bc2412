@@ -8,8 +8,6 @@ public class ExceptionEx1_20250114 {
   // 1. If exception is caught, print "Error: Cannot divide by zero.", otherwise print "Result: X"
   // 2. No matter if the exception is caught, finally print ""Division operation completed.""
 
-
-
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     System.out.print("Enter numerator: ");
@@ -18,14 +16,16 @@ public class ExceptionEx1_20250114 {
     int denominator = scanner.nextInt();
     scanner.close();
 
+    //code here...
+    int ans = 0;
     try{
-      int ans = numerator / denominator;
+      ans = numerator / denominator;
+      System.out.println("Result: " + ans);
     } catch (ArithmeticException e){
       System.out.println("Error: Cannot divide by zero.");
-    }
-    System.out.println("Result: X" + getValue(ans));
+    } finally{
     System.out.println("Division operation completed.");
-
+    }
 
 
 

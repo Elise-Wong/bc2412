@@ -19,6 +19,10 @@ public class DemoPQ{
       return this.age;
     }
 
+    public boolean isElderly(){
+      return this.age > 65;
+    }
+
     //setter
     public void setAge(){
       this.age = age;
@@ -77,9 +81,11 @@ public class DemoPQ{
     PriorityQueue<Person> pq2 = new PriorityQueue<>(new SortByAge());
     pq2.add(new Person(12));
     pq2.add(new Person(21));
+    pq2.add(new Person(68));
     System.out.println(pq2);
     //may overuse for PQ in poll...is so painful
     System.out.println(pq2.poll());
+    
 
 
 
