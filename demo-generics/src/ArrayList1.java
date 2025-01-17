@@ -1,3 +1,5 @@
+import DemoLambda.Book;
+
 public class ArrayList1<T> {
   private T[] values;
 
@@ -27,6 +29,7 @@ public class ArrayList1<T> {
     }
     newValues[newValues.length - 1] = value;
     this.values = newValues;
+    return true;
   }
 
   public int size(){

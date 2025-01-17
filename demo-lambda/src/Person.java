@@ -1,5 +1,12 @@
+/**
+ * Objective: / Purpose:
+ * @author elise.wong
+ * @since
+ * @version
+ * Date: 
+ */
 public class Person {
-    //attrucbit-Person
+    //attribute-Person
     private String name;
     private int age;
 
@@ -7,7 +14,10 @@ public class Person {
       public static Builder builder(){
         return new Builder();
       }
-
+/**
+ * 
+ * @param builder
+ */
     
       //constructor-Builder
       private Person(Builder builder){
@@ -41,7 +51,7 @@ public class Person {
 
     //another class - Builder
     public static class Builder{
-      //attrucbit-Builder
+      //attribute-Builder
       private String name;
       private int age;
 
@@ -51,7 +61,7 @@ public class Person {
       //setter-Builder
       public Builder name(String name){
         this.name = name;
-        return this;
+        return this; //return 自己
       }
 
       public Builder age(int age){
@@ -60,7 +70,7 @@ public class Person {
       }
 
       public Person build(){
-        return new Person(this);
+        return new Person(this); //complete version; hide new object in main
       }
 
       

@@ -15,6 +15,16 @@ public class StockPriceTracker {
   private final Deque<LocalDate> tradeDates = new LinkedList<>();
 
   //another class
+
+
+
+
+
+
+
+
+
+  
   public static class Stock{
     //attributes
     private LocalDate date;

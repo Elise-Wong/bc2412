@@ -25,11 +25,11 @@ public class ExceptionEx2_20250114 {
     //String to int
     int num = Integer.parseInt(str); //num=idx
     int result = numbers[num];
-    System.out.println("Element at index " + num + ": " + result);
+    System.out.println("Element at index " + num + ": " + result); //4 [base on 012341] -> Element at index 4: 50
     } catch (NumberFormatException e){
-      System.out.println("Error: Please enter a valid number.");
+      System.out.println("Error: Please enter a valid number."); //abc
     } catch (ArrayIndexOutOfBoundsException e){
-      System.out.println("Error: Index is out of bounds.");
+      System.out.println("Error: Index is out of bounds."); //any number
     } finally{
     System.out.println("Array retrieval attempt completed.");
     }

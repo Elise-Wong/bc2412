@@ -42,7 +42,7 @@ public class DemoQueue {
     String qqq = qq.poll();
     System.out.println(qq);
 
-    //for-each support Queue
+    //for-each support Queue....因為冇index, 所以可以用
     //contains --> equals
     for (String s : strings){
       System.out.println(s); 

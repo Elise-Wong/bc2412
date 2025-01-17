@@ -54,7 +54,7 @@ public class DemoArrayList {
 
 
     //Search sub-title (part of the title for book)"ABCD" book - for loop
-    //for-each support ArrayList
+    //for-each support ArrayList....因為冇index, 所以可以用
     ///boolean found = false;
     String bookName = "Not Found";
     for (Book book : books){
