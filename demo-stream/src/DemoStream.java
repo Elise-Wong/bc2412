@@ -108,6 +108,7 @@ public class DemoStream {
     List<Integer> sortedInteger2 = Arrays.stream(arr3)
         .filter(e -> e > 0)
         .sorted((i1, i2) -> i1 > i2 ? -1 : 1)
+        //.sorted(Comparator.reverseOrder())...same
         .filter(e -> e < 4)
         //.map
         .collect(Collectors.toList());
