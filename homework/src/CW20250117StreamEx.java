@@ -130,7 +130,6 @@ public class CW20250117StreamEx {
     Map<String, Integer> newStudents = students.stream() //java9Students 
       .collect(Collectors.toMap(stu -> stu.getName(), stu -> stu.getScore()));
     System.out.println(newStudents);
-
     // Output: {Alice=85, Bob=75}
 
     // 8. Filtering and Mapping to a List of Objects
@@ -149,13 +148,13 @@ public class CW20250117StreamEx {
     List<Employee> newEmployees = employees.stream()
       .filter(e -> e.getSalary() > 50000)
       .collect(Collectors.toList());
-    System.out.println(newEmployees);
+    System.out.println(newEmployees);//[John, Jane]
 
     //Map
     Map<String, Integer> result8 = employees.stream()
       .filter(e -> e.getSalary() > 50000)
       .collect(Collectors.toMap(stu -> stu.getName(), stu -> stu.getSalary()));
-    System.out.println(result8);
+    System.out.println(result8);//{John=65000, Jane=55000}
     // Output: [John, Jane]
 
     // 9. Grouping and Collecting to a Map (Group by Age)
@@ -171,11 +170,9 @@ public class CW20250117StreamEx {
       new Person("Bob", 25),
       new Person("Charlie", 30)
       );
-    //Map<Integer, List<String>> ageGroup = persons.stream()
-    //  .collect(Collectors.groupingBy(Person::getAge,
-    //  Collectors.summingInt(Person::getAge)));
-
-
+    //Map<Person.age, List<Person>> ageGroup = persons.stream()
+    //  .collect(Collectors.groupingBy(e -> e.getAge()));
+    //System.out.println(ageGroup);
 
     // // Output: {30=[Alice, Charlie], 25=[Bob]} (Map)
 
@@ -187,18 +184,27 @@ public class CW20250117StreamEx {
     // new Staff("Alice", Gender.Female)
     // new Staff("Bob", Gender.Male)
     // new Staff("Charlie", Gender.Male)
-
+    List<Staff> staffs = Arrays.asList(
+      new Staff("Alice", Gender.Female),
+      new Staff("Bob", Gender.Male),
+      new Staff("Charlie", Gender.Male)
+      );
     //boolean
-
+    //boolean isFemale = staffs.stream()
+    //  .anyMatch(gender -> gender.contains("Female"));
+    //System.out.println(isFemale);
+    //Map<Boolean, List<Staff>> genderGroup = staffs.stream()
+    //  .collect(Collectors.partitioningBy(s -> s.getGender().contains(Gender.Female)));
+    //System.out.println(genderGroup);
     // // Output: {false=[Alice], true=[Bob, Charlie]} (Map)
 
     // 11. Filtering, Mapping, and Collecting to a List
     // Task: Given a list of integers, filter out numbers less than 10, multiply the remaining numbers
     // by 2, and collect the result into a List.
-
     List<Integer> numbers4 = Arrays.asList(5, 15, 20, 7, 30);
     List<Integer> result11 = numbers4.stream()
-      .filter(e -> e < 10)
+      .filter(e -> e > 10)
+      .map(e -> e * 2)
       .collect(Collectors.toList());
     System.out.println(result11);
     // Output: [30, 40, 60]
@@ -206,22 +212,32 @@ public class CW20250117StreamEx {
     // 12. Mapping to a Custom Object and Collecting to a List
     // Task: Given a list of names and a constant default value, map each name to a Person object (name
     // and default value for age) and collect the result into a list.
-
-    // List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
-    // int defaultAge = 30;
+    List<String> names12 = Arrays.asList("Alice", "Bob", "Charlie");
+    int defaultAge = 30;
+     
+    List<Person> namesAge = names12.stream()
+      .map(e -> new Person(e, defaultAge))
+      .collect(Collectors.toList());
+    System.out.println(namesAge);
     // Output: [Person(name=Alice, age=30), Person(name=Bob, age=30), Person(name=Charlie, age=30)]
 
     // 13. Mapping and Collecting to a Deque
     // Task: Given a list of words, map each word to its uppercase form and collect the result into a
     // Deque.
-
-    // List<String> words = Arrays.asList("hello", "world", "java");
+    List<String> words13 = Arrays.asList("hello", "world", "java");
+    List<String> uppercaseWords = words13.stream()
+      .map(e -> e.toUpperCase())
+      .collect(Collectors.toList());
+    System.out.println(uppercaseWords);
     // Output: [HELLO, WORLD, JAVA] (Deque)
 
     // 14. Transforming and Collecting to an Array
     // Task: Given a list of integers, square each number and collect the result into an array.
-
-    // List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
+    List<Integer> numbers14 = Arrays.asList(1, 2, 3, 4);
+    List<Integer> squareNums = numbers14.stream()
+      .map(e -> e * e)
+      .collect(Collectors.toList());
+    System.out.println(squareNums);
     // Output: [1, 4, 9, 16]
 
     // 15. Map and Reduce
@@ -232,7 +248,19 @@ public class CW20250117StreamEx {
     // new Product("Book", 10)
     // new Product("Pen", 5)
     // new Product("Notebook", 7)
+    List<Product> products = List.of(
+      new Product("Book", 10),
+      new Product("Pen", 5),
+      new Product("Notebook", 7)
+    );
 
+    int totalPrice = products.stream()
+      .mapToInt(Product :: getPrice)
+      .sum();
+      //Map<List<Product>, Integer> totalPrice = products.stream()
+      //.collect(Collectors.groupingBy(Product :: products),
+      //  Collectors.summingInt(Product::getPrice));
+    System.out.println(totalPrice);
     // Output: 22
 
     // 16. Grouping
@@ -244,7 +272,15 @@ public class CW20250117StreamEx {
     // new Worker("Bob", "IT")
     // new Worker("Charlie", "HR")
     // new Worker("David", "IT")
-
+    List<Worker> workers = Arrays.asList(
+      new Worker("Alice", "HR"),
+      new Worker("Bob", "IT"),
+      new Worker("Charlie", "HR"),
+      new Worker("David", "IT")
+    );
+    Map<String, List<Worker>> worksInDept = workers.stream()
+      .collect(Collectors.groupingBy(e -> e.getDept()));
+    System.out.println(worksInDept);
     // Output: {HR=[Alice, Charlie], IT=[Bob, David]}
 
     // 17. Parallel Streams
@@ -268,8 +304,9 @@ public class CW20250117StreamEx {
     // 19. Distinct and Sorting
     // Task: Given a list of strings with some duplicates, remove the duplicates and return the result
     // in alphabetical order.
-
     List<String> fruits = Arrays.asList("apple", "banana", "apple", "orange", "banana", "grape");
+    List<String> newFruits = fruits.stream().distinct().collect(Collectors.toList());
+    System.out.println(newFruits);
     // Output: [apple, banana, grape, orange]
     
     // 20. Partitioning By
@@ -282,7 +319,15 @@ public class CW20250117StreamEx {
     // new Children("Bob", 55)
     // new Children("Charlie", 40)
     // new Children("David", 70)
-    
+    List<Children> childrens = Arrays.asList(
+      new Children("Alice", 45),
+      new Children("Bob", 55),
+      new Children("Charlie", 40),
+      new Children("David", 70)
+    );
+    Map<Boolean, List<Children>> passedChildrens = childrens.stream()
+      .collect(Collectors.partitioningBy(e -> e.getScore() >= 50));
+    System.out.println(passedChildrens);
     // Output: {false=[Alice, Charlie], true=[Bob, David]}
 
     // 21. Joining Strings
@@ -294,6 +339,14 @@ public class CW20250117StreamEx {
     // 22. Find First and Any
     // Task: Given a list of integers, find the first number that is divisible by 3.
     List<Integer> ages = Arrays.asList(4, 7, 9, 12, 16, 21);
+    
+    List<Integer> ages3 = ages.stream()
+      .filter(e -> e % 3 == 0)
+      .collect(Collectors.toList());
+    System.out.println(ages3); //[9, 12, 21]
+
+    Optional<Integer> firstAges = ages.stream().findFirst();
+    System.out.println(firstAges); //4
 
     //findFirst(), findAny() --> return Optional
     
@@ -430,4 +483,130 @@ public static class Person{
 
 }
 
+//10 class
+public enum Gender{
+   Female("Female"),
+   Male("Male"),
+   ;
+
+   private final String desc;
+
+   private Gender(String desc){
+    this.desc = desc;
+   }
+
+   public String getDesc(){
+    return this.desc;
+   }
+
+   public static String getDescription(Gender gender){
+    if (gender == Gender.Female){
+      return "Female";
+    } else if (gender == Gender.Male){
+      return "Male";
+    } return "";
+   }
+
+   @Override
+   public String toString(){
+    return String.format("Gender [desc=%s]", this.desc);
+   }
+}
+
+public static class Staff{
+  private String name;
+  private Gender gender;
+
+  public Staff(String name, Gender gender){
+    this.name = name;
+    this.gender = gender;
+  }
+
+  public String getName(){
+    return this.name;
+  }
+
+  public Gender getGender(){
+    return this.gender;
+  }
+
+  @Override
+  public String toString(){
+    return "Staff["
+      + "name=" + this.name
+      + ", gender=" + this.gender
+      + "]";
+  }
+
+}
+
+//15 class
+public static class Product{
+  private String name;
+  private int price;
+
+  public Product(String name, int price){
+    this.name = name;
+    this.price = price;
+  }
+
+  public String getName(){
+    return this.name;
+  }
+
+  public int getPrice(){
+    return this.price;
+  }
+
+}
+
+//16 class
+public static class Worker{
+  private String name;
+  private String dept;
+
+  public Worker(String name, String dept){
+    this.name = name;
+    this.dept = dept;
+  }
+
+  public String getName(){
+    return this.name;
+  }
+
+  public String getDept(){
+    return this.dept;
+  }
+
+  @Override
+  public String toString(){
+    return this.name;
+  }
+
+}
+
+//20 class
+public static class Children{
+  private String name;
+  private int score;
+
+  public Children(String name, int score){
+    this.name = name;
+    this.score = score;
+  }
+
+  public String getName(){
+    return this.name;
+  }
+
+  public int getScore(){
+    return this.score;
+  }
+
+  @Override
+  public String toString(){
+    return this.name;
+  }
+
+}
 }
