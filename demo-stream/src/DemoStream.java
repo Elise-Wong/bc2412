@@ -1,10 +1,17 @@
+import java.lang.StackWalker.Option;
+import java.nio.file.OpenOption;
 import java.text.Collator;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.management.RuntimeErrorException;
+import javax.print.DocFlavor.STRING;
 
 public class DemoStream {
   public static void main(String[] args) {
@@ -124,6 +131,92 @@ public class DemoStream {
 
     List<String> newFruits2 = fruits.stream().distinct().collect(Collectors.toList());
     System.out.println(newFruits2); //[orange, apple, lemon]
+
+    //what if List<Book> by distrinct()
+
+    //.of()
+    Stream.of("abc", "def");
+    Stream<Book> books2 = Stream.of(new Book("abc"), new Book("def"));
+    List<Book> books3 = books2.filter(e -> e.getName().contains("a"))
+    .collect(Collectors.toList());
+    System.out.println(books3);
+
+
+    LocalDate d1 = LocalDate.of(2014, 10, 31); //本身隱藏了new
+    String s = String.valueOf(123); //背後有new
+
+    //empty
+    Stream<String> ss = Stream.empty();
+    System.out.println(ss);//0
+
+    //Java 8: Optional is class 
+    //1. targetBook never be null
+    //2. targetBook is an Optional Object, so it can Optional method only
+    //3. you have to check the content/body of Optional Object before using it.
+    //4. isPresent() & ifPresent() are the ways to resolve Optional in safe mode.
+    //5. never to resolve the Optional object by get() only, is unsafe
+
+    Optional<Book> targetBook = Stream.of(new Book("abc"), new Book("def"))
+        .filter(e -> "abc".equals(e.getName())).findFirst(); //find the 1st one
+    System.out.println(targetBook);
+
+    int x = 10;
+//    if (targetBookBox.isPresent()){ //something like peek
+//        Book targetBook = targetBookBox.get();
+//        System.out.println(targetBookBox.getName()); //abc
+//        System.out.println(x); //10
+//        x = 100; //不能修改
+//    }
+
+    //similar to for-earch
+//    targetBookBox.ifPresent(e -> {
+//        System.out.println(e.getName()); //abc
+//        System.out.println(x); //10
+//    });
+
+    //stream for-each
+    //Stream 是封閉空間
+    String name = "oscar";
+    Stream.of(100, 120, 300).forEach(e ->{
+        System.out.println(e); //300
+        System.out.println(name); //oscar; //can read the name
+        //but cannot write the name variable....limitation
+        // x name = "abc"; //cant share variable
+    });
+
+    String name2 = "ok";
+    for (Integer integer : Stream.of(100,120,300).collect(Collectors.toList())){
+        System.out.println(integer);
+        name2 = "ijk";
+    }
+
+    //Some other ways to resolve the Optional, and safe
+//    Book targetBook2 = targetBookBox.orElse(new Book("DEFIJK"));
+
+//    Book targetBook3 = targetBookBox.orElseThrow(() -> new RuntimeException("Book is not found"));
+
+//    Book targetBook4 = targetBookBox.orElseGet(() -> new Book("DEFAULT")); //similar to orElse
+
+    //of(), ofNullabl()
+    String name3 = "ABC";
+    Optional<String> os1 = Optional.of(name3); //of() 是有野, 一定不可以null //java.lang.NullPointerException
+    String name4 = null;
+    Optional<String> os2 = Optional.ofNullable(name4);//ofNullabl() 可冇可有野
+
+    Optional<String> os3 = Optional.empty();
+    if (os3.isPresent()){
+        System.out.println(os3.get());
+    } else {
+        System.out.println("The String is Null.");
+    }
+
+    //Stream().order.sort()
+
+
+
+
+
+    
 
 
   }

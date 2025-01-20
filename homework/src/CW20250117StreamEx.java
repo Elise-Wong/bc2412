@@ -366,6 +366,7 @@ public class CW20250117StreamEx {
     // intermediate results to the console.
     
     List<Integer> amounts = Arrays.asList(1, 2, 3, 4);
+
     // Intermediate output: 2, 4, 6, 8
     // Final Output: [2, 4, 6, 8]
 
@@ -374,15 +375,25 @@ public class CW20250117StreamEx {
     // Handle the case where no such string exists using Optional.
     
     List<String> animals = Arrays.asList("cat", "tiger", "panda", "dog");
+    Optional<String> maxAnimals = animals.stream()
+      .max((o1, o2) -> o1.compareTo(o2));
+    System.out.println(maxAnimals);
     // Output: Optional[tiger]
 
     List<String> animals2 = Arrays.asList("cat", "dog", "bird");
+    //Optional<String> newAnimals2 = animals2.stream()
+    //  .filter(s -> s.length().contains("4"))
+    //  .forEach(e -> {
+    //    System.out.println(newAnimals2);
+    //  });
     // Output: Optional[null]
 
     // 26. Custom Collector
     // Task: Create a custom collector that collects the elements of a stream and remove all duplicates
     
     List<Integer> duplicates = Arrays.asList(2, 1, 2, 3, 4, 3, 5, 5, 6);
+    Set<Integer> newDuplicates = duplicates.stream().distinct().collect(Collectors.toSet());
+    System.out.println(newDuplicates);
     // Output: [1, 2, 3, 4, 5, 6] (Set)
 
     // 27. String Length Calculation
@@ -390,7 +401,15 @@ public class CW20250117StreamEx {
     // combined.
     
     List<String> keywords = Arrays.asList("stream", "filter", "map", "sorted", "collect");
+    Optional<String> MaxKeywords = keywords.stream()
+    .max((o1, o2) -> o1.compareTo(o2));
+    Optional<String> MinKeywords = keywords.stream()
+    .min((o1, o2) -> o1.compareTo(o2));
+    //Optional<String> countKeywords = keywords.stream()
+    //.count((o1, o2) -> o1.compareTo(o2));
 
+    System.out.println(MaxKeywords);
+    System.out.println(MinKeywords);
     //Aggregate Function: max(), min(), average(), sum(), count()
 
     // Output: 28
