@@ -213,6 +213,32 @@ public class DemoStream {
     //Stream().order.sort()
 
 
+   //1. Stream intermediate operation wont execute intself, until terminal operation.
+   //2. Once the termianl operation executed, the stream object can no longer be used aga 
+    Stream<Integer> integersLargerThanTen = 
+        Stream.of(10, 100 -1).filter(e -> e > 10);
+    System.out.println(integersLargerThanTen.count()); //1
+
+    //integersLargerThanTen.collect(Collectors.toList());
+    //runtime exception: stream has already been operated upon or closed
+
+    //Intermediate operations: filter, map, distinct, count
+    //Terminal Operations: collect(), count(), max(), min()
+
+    Stream<Integer> plusOne = Stream.of(1,2,3)
+        .map(i ->{  //map , so collect
+            System.out.println("*" + i); //123
+            return i +1;
+    }); 
+    List<Integer> plusOneList = plusOne.collect(Collectors.toList()); //234
+
+    long count = plusOne.count();
+    //because Java thinks map() doesnt change the result of count() 
+    //soi it wont execute map(), when the terminal operation is count()
+    System.out.println(count); //3
+    
+
+
 
 
 

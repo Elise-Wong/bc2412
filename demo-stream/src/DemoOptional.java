@@ -1,9 +1,14 @@
 import java.util.Optional;
 
-public class DemoOptional {
+public class DemoOptional<T> {
   //attribues for get setter
+  //3. Never use Optional Type as attruibute type
   //firstName still can be null, but what is this meaning?
   private Optional<String> firstName;
+  //x private Box<String>
+
+  //genetry 在complie time 已知, 可runtime 未知
+  //complie time 未知, runtime未知的, 不可以寫
 
   public static void main(String[] args) {
 
@@ -11,7 +16,7 @@ public class DemoOptional {
     //adv: able to avoid null pointer exception
     //can use else, throw\
     //1.
-    Optional<String> result = concat("abc", "def");
+    Optional<String> result = concat("abc", "def");  //local variable: Optional<String> result = 
     //isPresent ...correctly to 處理 null
     if (result.isPresent()){ //can (!result.isPresent())
       System.out.println(result.get()); //abcdef
