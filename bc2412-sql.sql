@@ -74,14 +74,32 @@ select * from customers where dob > '2000-01-01' order by id desc; -- Java: stea
 -- id, amount, order_date, customer_id
 create table orders (
 	id integer,
-    amount decimal,
-    order_date date,
-    customer_id varchar(20)
+    amount decimal(13,2), -- 11 is for integer digit, 2 is for deimcal places, total 13
+    order_date datetime, -- yyyy-mm-yy hh:mm:ss0000000000
+    customer_id integer
 );
 
+drop table orders;
 
+insert into orders (id, amount, order_date, customer_id) 
+values (1, 100.9, str_to_date('2020-12-31 23:10:59', '%Y-%m-%d %H:%i:%s'), 1);
 
+insert into orders (id, amount, order_date, customer_id) 
+values (2, 999.9, current_time(), 3);
 
+insert into orders (id, amount, order_date, customer_id) 
+values (3, 1999.2, current_time(), 3);
 
+insert into orders values 
+		(4, 9999.9, current_time(), 3),
+		(5, 12000, current_time(), 3),
+        (6, 15000, current_time(), 3);
 
+select * from orders;
 
+-- sum(), avg(), max(), min(), count()
+select sum(amount) from orders;
+select avg(amount) from orders;
+select max(amount) from orders;
+select min(amount) from orders;
+select count(amount) from orders;
