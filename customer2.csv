@@ -1,0 +1,22 @@
+full_name,length_of_lastname,uppercase_firstname,lowercase__firstname,new_email,first_name_initial,left_lastname,right_lastname,lastname_contains_cap_letter,lastname_contains_small_letter,id,first_name,last_name,email,dob
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Elise Wong",4,ELISE,elise,elisewong$gmail.com,El,Wo,ng,0,0,2,Elise,Wong,elisewong@gmail.com,2000-01-01
+"Elise Wong",4,ELISE,elise,elisewong$gmail.com,El,Wo,ng,0,0,2,Elise,Wong,elisewong@gmail.com,2000-01-01
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Lucas Lau",3,LUCAS,lucas,lucaslau$gmail.com,Lu,La,au,2,2,2,Lucas,Lau,lucaslau@gmail.com,1999-10-31
+"Elise Wong",4,ELISE,elise,elisewong$gmail.com,El,Wo,ng,0,0,3,Elise,Wong,elisewong@gmail.com,2000-01-01
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Lucas Lau",3,LUCAS,lucas,lucaslau$gmail.com,Lu,La,au,2,2,2,Lucas,Lau,lucaslau@gmail.com,1999-10-31
+"Elise Wong",4,ELISE,elise,elisewong$gmail.com,El,Wo,ng,0,0,3,Elise,Wong,elisewong@gmail.com,2000-01-01
+"Elise Wong",4,ELISE,elise,elisewong$gmail.com,El,Wo,ng,0,0,3,Elise,Wong,elisewong@gmail.com,2000-01-01
+"Elise Wong",4,ELISE,elise,elisewong$gmail.com,El,Wo,ng,0,0,3,Elise,Wong,elisewong@gmail.com,2000-01-10
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Lucas Lau",3,LUCAS,lucas,lucaslau$gmail.com,Lu,La,au,2,2,2,Lucas,Lau,lucaslau@gmail.com,1999-10-31
+"Elise Wong",4,ELISE,elise,elisewong$gmail.com,El,Wo,ng,0,0,3,Elise,Wong,elisewong@gmail.com,2000-01-10
+"Vincent Lau",3,VINCENT,vincent,vincentlau$gmail.com,Vi,La,au,2,2,1,Vincent,Lau,vincentlau@gmail.com,1999-12-31
+"Lucas Lau",3,LUCAS,lucas,lucaslau$gmail.com,Lu,La,au,2,2,2,Lucas,Lau,lucaslau@gmail.com,1999-10-31
+"Elise Wong",4,ELISE,elise,elisewong$gmail.com,El,Wo,ng,0,0,3,Elise,Wong,elisewong@gmail.com,2000-01-10

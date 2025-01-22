@@ -78,7 +78,9 @@ create table orders (
     order_date datetime, -- yyyy-mm-yy hh:mm:ss0000000000
     customer_id integer
 );
+select * from orders;
 
+-- delete hold table
 drop table orders;
 
 insert into orders (id, amount, order_date, customer_id) 
@@ -95,11 +97,88 @@ insert into orders values
 		(5, 12000, current_time(), 3),
         (6, 15000, current_time(), 3);
 
-select * from orders;
 
--- sum(), avg(), max(), min(), count()
+
+-- sum(), avg(), max(), min(), count() : aggregate function -> result data structure changed
+-- only 1 row
 select sum(amount) from orders;
 select avg(amount) from orders;
 select max(amount) from orders;
 select min(amount) from orders;
 select count(amount) from orders;
+
+-- NOT OK: data structure are not same
+select sum(amount), id from orders;
+
+-- OK
+-- as can let java to get the name
+-- static method
+select sum(amount) as total_amt
+	, round(avg(amount),2) as avg_amt
+	, max(amount) as highest_amt
+	, min(amount) as lowest_amt
+	, count(amount) as order_count
+	, 1
+    'hello' 
+	from orders
+	where amount > 1000;
+
+-- SQL sequence, step
+-- 1. from
+-- 2. where
+-- 3. group by (having)
+-- 4. order by
+-- 5. select columns
+
+-- Math
+-- ignore decimal places
+-- o is the nickname of orders
+select floor(o.amount), o.* from orders o; -- down to nearest integer 
+select ceil(o.amount), o.* from orders o; -- up to nearest integer
+select abs(-4), abs(4) from dual;
+
+-- String
+select concat(c.first_name, ' ', c.last_name) as full_name, c.* from customers c;
+
+select concat(c.first_name, ' ', c.last_name) as full_name
+, length(c.last_name) as length_of_lastname
+, upper(c.first_name) as uppercase_firstname
+, lower(c.first_name) as lowercase__firstname
+, replace(c.email, '@', '$') as new_email
+, substring(c.first_name, 1, 2) as first_name_initial -- from 1 to 2 -> 出2個字母; not start from 0
+, left(c.last_name, 2) as left_lastname
+, right(c.last_name, 2) as right_lastname
+, instr(c.last_name, 'A') as lastname_contains_cap_letter
+, instr(c.last_name, 'a') as lastname_contains_small_letter
+, c.*
+from customers c;
+
+-- LIKE
+-- % means any characters; %與%之間的字母
+select *
+from customers
+where first_name like '%V%';
+
+select *
+from customers
+where first_name like '%v%'; -- 包括v
+
+select *
+from customers
+where first_name like '%%'; -- 中間冇字母
+
+select *
+from customers
+where first_name like '%V%T'; -- T 收尾
+
+-- DATE
+select o.*, date_add(o.order_date, interval 3 month) as  follow_up_date
+from orders o;
+
+-- less 3 month ...try yourself
+
+-- count() all
+select count(*) from customers;
+
+
+
