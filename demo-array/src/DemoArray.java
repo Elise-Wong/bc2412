@@ -80,7 +80,7 @@ public class DemoArray {
 
         
         int [] arr5 = new int[]{9, 8, 99, 98};
-        int min = Integer.MAX_VALUE;
+        int min = Integer.MAX_VALUE; // min不可set做0, 不然出黎既答案是0, 而不是最小數
         for (int i = 0; i < arr5.length; i++){
             if(arr5[i] < min){
             min = arr5[i];

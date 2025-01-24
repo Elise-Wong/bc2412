@@ -1,10 +1,10 @@
-//import java.lang.invoke.ClassSpecializer.Factory;
+import java.lang.invoke.ClassSpecializer.Factory;
 
 public class DemoFactory {
   public static void main(String[] args) {
 
 
-    //ModernChair modernChair = new ModernChair();
+    ModernChair modernChair = new ModernChair();
     VictorianChair victorianChair = new VictorianChair();
 
     //Runtime Polymorphism

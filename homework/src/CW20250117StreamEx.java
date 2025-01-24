@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CW20250117StreamEx {
   public static void main(String[] args) {
@@ -19,7 +20,7 @@ public class CW20250117StreamEx {
       //.sorted((i1, i2) -> i1 > i2 ? -1 : 1)
       .sorted(Comparator.reverseOrder())
       .collect(Collectors.toList());
-    System.out.println(newNumbers);
+    System.out.println("01. " + newNumbers);
     // Output: [100, 64, 36, 16, 4]
 
     // 2. Filtering and Collecting
@@ -29,7 +30,7 @@ public class CW20250117StreamEx {
     List<String> newNames = names.stream()
       .filter(e -> e.startsWith("A"))
       .collect(Collectors.toList());
-    System.out.println(newNames);
+    System.out.println("02. " + newNames);
     // // Output: [Alice, Annie, Alex]
 
     // 3. Finding Maximum and Minimum
@@ -43,11 +44,11 @@ public class CW20250117StreamEx {
     if (box.isPresent()){
       maxNum = box.get();
     }
-    System.out.println("*" + maxNum);
+    System.out.println("03. " + maxNum);
 
     //orElse() to open the "box"
     int minNum = numbers2.stream().min((e1, e2) -> e1 < e2 ? -1 : 1).orElse(-1);
-    System.out.println("*" + minNum);
+    System.out.println("03. " + minNum);
 
     //method 2, ref: note
     Optional<Integer> MaxNumber2 = numbers2.stream()
@@ -55,7 +56,7 @@ public class CW20250117StreamEx {
 
     Optional<Integer> MinNumber2 = numbers2.stream()
       .min((o1, o2) -> o1.compareTo(o2));
-    System.out.println("Max: " + MaxNumber2 + ", Min: " + MinNumber2);
+    System.out.println("03. Max: " + MaxNumber2 + ", Min: " + MinNumber2);
     // Output: Max: 30
     // Output: Min: 5
 
@@ -63,15 +64,18 @@ public class CW20250117StreamEx {
     // Task: Given a list of strings, map each string to its length and collect the lengths into a
     // List<Integer>
     List<String> words = Arrays.asList("apple", "banana", "pear");
+
+    //method 1
     List<Integer> wordLengths = words.stream()
       .map(e -> e.length())
       .collect(Collectors.toList());
-    System.out.println(wordLengths);
+    System.out.println("04. " + wordLengths);
 
+    //method 2
     Map<String, Integer> newWords = words.stream()
       //.map(e -> e.length())
       .collect(Collectors.toMap(s -> s, String::length));
-    System.out.println(newWords);
+    System.out.println("04. " + newWords);
     // Output: [5, 6, 4] (List)
 
     // 5. Counting Elements
@@ -82,7 +86,7 @@ public class CW20250117StreamEx {
     List<String> countWords5 = words5.stream()
       .filter(e -> e.length() > 3)
       .collect(Collectors.toList());
-    System.out.println(countWords5.size());
+    System.out.println("05. " + countWords5.size());
 
     //method 2
     ///count() : Terminal Operation 完結的寫法
@@ -90,7 +94,7 @@ public class CW20250117StreamEx {
     long count = words5.stream()
       .filter(e -> e.length() > 3)
       .count();
-    System.out.println(count);
+    System.out.println("05. " + count);
     // Output: 4
 
     // Here are more advanced exercises focused on using filter, map, and collect to transform data into
@@ -102,7 +106,7 @@ public class CW20250117StreamEx {
     Set<Integer> newNumbers3 = numbers3.stream()
       .filter(e -> e > 10)
       .collect(Collectors.toSet());
-    System.out.println(newNumbers3); //20,15; List<>...toList() -> 15,20
+    System.out.println("06. " + newNumbers3); //20,15; List<>...toList() -> 15,20
     // // Output: [15, 20]
 
     // 7. Mapping to a Map (Key-Value Pairs)
@@ -129,7 +133,7 @@ public class CW20250117StreamEx {
 
     Map<String, Integer> newStudents = students.stream() //java9Students 
       .collect(Collectors.toMap(stu -> stu.getName(), stu -> stu.getScore()));
-    System.out.println(newStudents);
+    System.out.println("07. " + newStudents);
     // Output: {Alice=85, Bob=75}
 
     // 8. Filtering and Mapping to a List of Objects
@@ -148,7 +152,7 @@ public class CW20250117StreamEx {
     List<Employee> newEmployees = employees.stream()
       .filter(e -> e.getSalary() > 50000)
       .collect(Collectors.toList());
-    System.out.println(newEmployees);//[John, Jane]
+    System.out.println("08. " + newEmployees);//[John, Jane]
 
     //Map
     Map<String, Integer> result8 = employees.stream()
@@ -206,7 +210,7 @@ public class CW20250117StreamEx {
       .filter(e -> e > 10)
       .map(e -> e * 2)
       .collect(Collectors.toList());
-    System.out.println(result11);
+    System.out.println("11. " + result11);
     // Output: [30, 40, 60]
 
     // 12. Mapping to a Custom Object and Collecting to a List
@@ -218,7 +222,7 @@ public class CW20250117StreamEx {
     List<Person> namesAge = names12.stream()
       .map(e -> new Person(e, defaultAge))
       .collect(Collectors.toList());
-    System.out.println(namesAge);
+    System.out.println("12. " + namesAge);
     // Output: [Person(name=Alice, age=30), Person(name=Bob, age=30), Person(name=Charlie, age=30)]
 
     // 13. Mapping and Collecting to a Deque
@@ -228,7 +232,7 @@ public class CW20250117StreamEx {
     List<String> uppercaseWords = words13.stream()
       .map(e -> e.toUpperCase())
       .collect(Collectors.toList());
-    System.out.println(uppercaseWords);
+    System.out.println("13. " + uppercaseWords);
     // Output: [HELLO, WORLD, JAVA] (Deque)
 
     // 14. Transforming and Collecting to an Array
@@ -237,7 +241,7 @@ public class CW20250117StreamEx {
     List<Integer> squareNums = numbers14.stream()
       .map(e -> e * e)
       .collect(Collectors.toList());
-    System.out.println(squareNums);
+    System.out.println("14. " + squareNums);
     // Output: [1, 4, 9, 16]
 
     // 15. Map and Reduce
@@ -260,7 +264,7 @@ public class CW20250117StreamEx {
       //Map<List<Product>, Integer> totalPrice = products.stream()
       //.collect(Collectors.groupingBy(Product :: products),
       //  Collectors.summingInt(Product::getPrice));
-    System.out.println(totalPrice);
+    System.out.println("15. " + totalPrice);
     // Output: 22
 
     // 16. Grouping
@@ -280,13 +284,22 @@ public class CW20250117StreamEx {
     );
     Map<String, List<Worker>> worksInDept = workers.stream()
       .collect(Collectors.groupingBy(e -> e.getDept()));
-    System.out.println(worksInDept);
+    System.out.println("16. " + worksInDept);
     // Output: {HR=[Alice, Charlie], IT=[Bob, David]}
 
     // 17. Parallel Streams
     // Task: Given a list of numbers, use a parallel stream to calculate the sum of all elements.
     List<Integer> numbers5 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    
+    //method 1
+    Integer newNums51 = numbers5.parallelStream()
+      .reduce(0, (a, b) -> a + b);
+    System.out.println("17. " + newNums51);
 
+    //method 2
+    Integer newNums52 = numbers5.parallelStream()
+      .reduce(0, Integer::sum);
+    System.out.println("17. " + newNums52);
     // Output: 55
 
 
@@ -299,6 +312,12 @@ public class CW20250117StreamEx {
         Arrays.asList(4, 5, 6), //
         Arrays.asList(7, 8, 9) //
     );
+
+    List<Integer> newListOfIntegers = listOfIntegers.stream()
+      .flatMap(str -> str.stream())
+      .filter(e -> e > 5)
+      .collect(Collectors.toList());
+    System.out.println("18. " + newListOfIntegers);
     // Output: [6, 7, 8, 9]
 
     // 19. Distinct and Sorting
@@ -306,7 +325,7 @@ public class CW20250117StreamEx {
     // in alphabetical order.
     List<String> fruits = Arrays.asList("apple", "banana", "apple", "orange", "banana", "grape");
     List<String> newFruits = fruits.stream().distinct().collect(Collectors.toList());
-    System.out.println(newFruits);
+    System.out.println("19. " + newFruits);
     // Output: [apple, banana, grape, orange]
     
     // 20. Partitioning By
@@ -327,13 +346,16 @@ public class CW20250117StreamEx {
     );
     Map<Boolean, List<Children>> passedChildrens = childrens.stream()
       .collect(Collectors.partitioningBy(e -> e.getScore() >= 50));
-    System.out.println(passedChildrens);
+    System.out.println("20. " + passedChildrens);
     // Output: {false=[Alice, Charlie], true=[Bob, David]}
 
     // 21. Joining Strings
     // Task: Given a list of words, join them into a single string separated by commas.
     
     List<String> languages = Arrays.asList("Java", "Python", "Rust", "R", "Go");
+    String result21 = languages.stream()
+      .collect(Collectors.joining(", "));
+    System.out.println("21. " + result21);
     // Output: "Java, Python, Rust, R, Go"
 
     // 22. Find First and Any
@@ -349,16 +371,22 @@ public class CW20250117StreamEx {
     System.out.println(firstAges); //4
 
     //findFirst(), findAny() --> return Optional
-    
+    Optional<Integer> firstAges3 = ages.stream()
+      .filter(e -> e % 3 == 0)
+      .findFirst();
+    System.out.println("22. " + firstAges3);    
     // Output: 9
 
     // 23. Limit and Skip
     // Task: Given a list of numbers, skip the first 3 elements and return the next 5 elements.
     
     List<Integer> elements = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
+    List<Integer> newElements = elements.stream()
+      .skip(3)
+      .limit(5)
+      .collect(Collectors.toList());
+    System.out.println("23. " + newElements);
     //limit(x)
-
     // Output: [4, 5, 6, 7, 8]
     
     // 24. Peek =lookup
@@ -367,6 +395,11 @@ public class CW20250117StreamEx {
     
     List<Integer> amounts = Arrays.asList(1, 2, 3, 4);
 
+    List<Integer> doubleAmounts = amounts.stream()
+      .map(e -> e * 2)
+      .peek(e -> System.out.println(e))
+      .collect(Collectors.toList());
+    System.out.println("24. " + doubleAmounts);
     // Intermediate output: 2, 4, 6, 8
     // Final Output: [2, 4, 6, 8]
 
@@ -377,7 +410,7 @@ public class CW20250117StreamEx {
     List<String> animals = Arrays.asList("cat", "tiger", "panda", "dog");
     Optional<String> maxAnimals = animals.stream()
       .max((o1, o2) -> o1.compareTo(o2));
-    System.out.println(maxAnimals);
+    System.out.println("25. " + maxAnimals);
     // Output: Optional[tiger]
 
     List<String> animals2 = Arrays.asList("cat", "dog", "bird");
@@ -393,7 +426,7 @@ public class CW20250117StreamEx {
     
     List<Integer> duplicates = Arrays.asList(2, 1, 2, 3, 4, 3, 5, 5, 6);
     Set<Integer> newDuplicates = duplicates.stream().distinct().collect(Collectors.toSet());
-    System.out.println(newDuplicates);
+    System.out.println("26. " + newDuplicates);
     // Output: [1, 2, 3, 4, 5, 6] (Set)
 
     // 27. String Length Calculation
@@ -405,11 +438,19 @@ public class CW20250117StreamEx {
     .max((o1, o2) -> o1.compareTo(o2));
     Optional<String> MinKeywords = keywords.stream()
     .min((o1, o2) -> o1.compareTo(o2));
-    //Optional<String> countKeywords = keywords.stream()
-    //.count((o1, o2) -> o1.compareTo(o2));
+    long countKeywords = keywords.stream()
+      .count();
+    
+      List<String> counts = keywords.stream()
+      .filter(e -> e.length() > 0)
+      .peek(e -> System.out.println(e.length()))
+      .collect(Collectors.toList());
 
+    
     System.out.println(MaxKeywords);
     System.out.println(MinKeywords);
+    System.out.println(countKeywords);
+   
     //Aggregate Function: max(), min(), average(), sum(), count()
 
     // Output: 28

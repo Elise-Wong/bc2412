@@ -172,13 +172,133 @@ from customers
 where first_name like '%V%T'; -- T 收尾
 
 -- DATE
+-- add
 select o.*, date_add(o.order_date, interval 3 month) as  follow_up_date
 from orders o;
+select o.*, date_add(o.order_date, interval 2 year) as  follow_up_date
+from orders o;
+-- less 3 day
+select o.*, date_sub(o.order_date, interval 3 day) as  follow_up_date
+from orders o;
 
--- less 3 month ...try yourself
 
--- count() all
-select count(*) from customers;
+-- count(1) = count(*) = counts all
+select count(1) from orders o;
+select count(*) from orders o;
 
+-- group by... no any detail
+-- separate the data into groups, by a column(customer_id)
+-- after group by, you can only select the column that you used for "Group"
+select customer_id, count(1) as order_count, avg(amount) as average_order_amount
+from orders
+group by customer_id;  
+-- ans: 1 1 -- 3 5
+
+-- from > where > group by > select
+select customer_id, sum(amount) as total_order_amt, count(1) as order_count -- select cant use * as the logic issue
+-- 可count 1, 但冇sum 1
+from orders
+where amount < 5000
+group by customer_id;
+
+-- Database Type: Relational DB(Structure -> Schemas (tabale's defination) -> row x column)
+-- JOIN (customers x orders)
+-- 1. find order count by customer, show first_name and last_name and orderd count
+
+-- inner join
+-- 3 customers x 6 orders = 18 rows
+select c.*, o.*
+from customers c inner join orders o;
+-- on: filter sth
+select c.*, o.*
+from customers c inner join orders o on o.customer_id = c.id;
+
+select c.first_name, c.last_name, o.amount, o.id as order_id, c.id as customer_id
+from customers c inner join orders o on o.customer_id = c.id;
+
+select c.id as customer_id, c.first_name, c.last_name
+, count(1) as order_count
+, sum(amount) as total_order_amt 
+from customers c 
+inner join orders o 
+on o.customer_id = c.id -- "on" before "join"
+group by c.id, c.first_name, c.last_name; -- uniqle field 
+
+select c.id as customer_id, c.first_name, c.last_name
+, count(1) as order_count
+, sum(amount) as total_order_amt 
+from customers c 
+inner join orders o 
+on o.customer_id = c.id
+where o.amount < 5000 -- o.customer_id = c.id -- "where" after "join", but before "group"
+group by c.id, c.first_name, c.last_name;
+
+-- function is same as inner join, better than using inner join
+select c.id, c.first_name, c.last_name, count(1) as order_count
+from customers c, orders o
+where c.id = o.customer_id
+and o.amount < 5000
+group by c.id, c.first_name, c.last_name;
+
+-- on vs where
+-- where: is doing 2 tasks, is filter
+
+-- group by + HAVING ...要一齊
+-- group by 內某些東西留下
+select c.id as customer_id, c.first_name, c.last_name
+, count(1) as order_count
+from customers c 
+inner join orders o 
+on o.customer_id = c.id
+where o.amount < 5000 -- filter record (rows)
+group by c.id, c.first_name, c.last_name
+having count(1) > 1 -- after group by -> filter group
+order by c.id;
+
+-- distinct
+-- distinct column should exist in "group by".
+select distinct customer_id
+from orders;
+
+select distinct last_name
+from customers;
+
+select distinct last_name, first_name
+from customers;
+
+insert into customers (id, first_name, last_name, email, dob)
+values (4, 'Vincent', 'Lau', 'vincentlau2@gmail.com', '1999-01-31');
+
+select distinct last_name, first_name, count(1)
+from customers
+group by last_name, first_name;
+
+select distinct id
+from customers
+group by id;
+
+-- LEFT JOIN
+-- show all records of the left table)
+
+-- find all customers with his orders
+select c.*, o.*
+from customers c left join orders o on c.id = o.customer_id;
+
+select o.*, c.*
+from  orders o left join customers c on c.id = o.customer_id;
+
+
+-- RIGHT JOIN
+-- 冇咩用
+select c.*, o.*
+from customers c right join orders o on c.id = o.customer_id;
+
+select o.*, c.*
+from  orders o right join customers c on c.id = o.customer_id;
+
+-- find the customer who didnt place order (use leftjoin, where)
+select c.*, o.*
+from customers c left join orders o on c.id = o.customer_id
+where o.id is null; -- null 要用 is/is not
 
 
