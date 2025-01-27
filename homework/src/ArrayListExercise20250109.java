@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class ArrayListExercise20250109 {
   public static void main(String[] args) {
@@ -14,13 +15,13 @@ public class ArrayListExercise20250109 {
     nums.add(4,(50));
 
     //01c
-    System.out.println(nums.get(0) + "," + nums.get(1) + "," + nums.get(2) + "," + nums.get(3) + "," + nums.get(4));
+    System.out.println("01c. " + nums.get(0) + "," + nums.get(1) + "," + nums.get(2) + "," + nums.get(3) + "," + nums.get(4));
 
     //01d
     nums.remove(2);
 
     //01e
-    System.out.println(nums.size());
+    System.out.println("01e. " + nums.size());
 
 
     //02a
@@ -29,10 +30,10 @@ public class ArrayListExercise20250109 {
     stores.add("Banana");
     stores.add("Mango");
     stores.add("Orange");
-    System.out.println(stores.get(0) + "," + stores.get(1) + "," + stores.get(2) + "," + stores.get(3));
+    System.out.println("02a. " + stores);
 
     //02b
-    System.out.println(stores.contains(("Grapes")));
+    System.out.println("02b. " + stores.contains(("Grapes")));
 
     //02c
     boolean founded = false;
@@ -43,7 +44,7 @@ public class ArrayListExercise20250109 {
       }
     }
     stores.add("Grapes");
-    System.out.println(stores);
+    System.out.println("02c. " + stores);
 
     //02d
     stores.remove("Mango");
@@ -52,7 +53,7 @@ public class ArrayListExercise20250109 {
     stores.addAll(2, newStores);
    
     //02e
-    System.out.println(stores.get(0) + "," + stores.get(1) + "," + stores.get(2) + "," + stores.get(3));
+    System.out.println("02e. " + stores);
 
 
     //03a
@@ -64,12 +65,21 @@ public class ArrayListExercise20250109 {
     ns.add(4,(40));
     ns.add(5,(20));
     ns.add(6,(50));
-    System.out.println(ns.get(0) + "," + ns.get(1) + "," + ns.get(2) + "," + ns.get(3) + "," + ns.get(4) + "," + ns.get(5) + "," + ns.get(6));
+    System.out.println("03a. " + ns);
 
-    //03b x
-    int targetRemoveIndex = 1;
-    String targetRemoveString = null;
-    int index = 0;
+    //03b 
+    //method 1
+    HashSet<Integer> set = new HashSet<Integer>(ns);
+    System.out.println("03b. " + set);
+
+    //method 2
+    ArrayList<Integer> newns = new ArrayList<Integer>(set);
+    for (Object object : newns){
+      System.out.println(object);
+    }
+    //int targetRemoveIndex = 1;
+    //String targetRemoveString = null;
+    //int index = 0;
     //for (String s : ns){  //int s : ns
     //  if(targetRemoveIndex == index){
     //    targetRemoveString = s;
@@ -77,10 +87,10 @@ public class ArrayListExercise20250109 {
     //  }
     //  index++;
     //}
-    ns.remove(targetRemoveString);
+    //ns.remove(targetRemoveString);
 
-    //03c x
-    System.out.println(ns.size());
+    //03c
+    System.out.println("03c. " + set);
 
 
     //04a
@@ -94,16 +104,15 @@ public class ArrayListExercise20250109 {
     //04b
     countries.add("Canada");
 
-    //04c x
-    HashSet<String> newCountries = new HashSet<>();
+    //04c
+    List<String> newCountries = new ArrayList<>(countries);
     newCountries.add("India");
+    System.out.println("04c. " + newCountries);
     //countries.addAll(2, newCountries);
-
-    countries.add("India");
+    //countries.add("India");
 
     //04d x
-
-    System.out.println(countries);
+    System.out.println("04d. " + countries);
 
     //05a
     HashSet<Double> n5Set = new HashSet<>();
@@ -114,13 +123,13 @@ public class ArrayListExercise20250109 {
     n5Set.add(5.5);
 
     //05b
-    System.out.println(n5Set.contains(3.3));
+    System.out.println("05b. " + n5Set.contains(3.3));
 
     //05c
     n5Set.remove(2.2);
 
     //05d
-    System.out.println(n5Set.size());
+    System.out.println("05d. " + n5Set.size());
 
 
     //06a
@@ -167,7 +176,7 @@ public class ArrayListExercise20250109 {
     ArrayList<String> s7Array = new ArrayList<>(s7Set);
 
     //07c
-    System.out.println(s7Array);
+    System.out.println("07c. " + s7Array);
 
 
     //08a
@@ -177,11 +186,11 @@ public class ArrayListExercise20250109 {
     students.add(new Student(3, "Charlie"));
 
     //08b
-    System.out.println(students);
+    System.out.println("08b. " + students);
 
     //08c
     students.remove(1);
-    System.out.println(students);
+    System.out.println("08c. " + students);
 
     //08d v
     String studentName = "Student not found";
@@ -192,7 +201,7 @@ public class ArrayListExercise20250109 {
         System.out.println(student.getName());
         break;
       }
-      System.out.println(studentName);
+      System.out.println("08d. " + studentName);
     }
 
     //08e
@@ -205,7 +214,7 @@ public class ArrayListExercise20250109 {
         break;
       }
     }
-    System.out.println(newstudents);
+    System.out.println("08e. " + newstudents);
 
 
     //09a
@@ -220,7 +229,8 @@ public class ArrayListExercise20250109 {
     studentSet2s.add(new Student(3, "Charlie"));
     studentSet2s.add(new Student(4, "David"));
 
-    //System.out.println(studentSet2s.getName() + studentSet2s.getId());
+    System.out.println("09a. Set 1: " + studentSet1s);
+    System.out.println("09a. Set 2: " + studentSet2s);
 
     //09b
     //String sN = "Not Found";
@@ -235,7 +245,7 @@ public class ArrayListExercise20250109 {
 
     //09c
     studentSet1s.addAll(studentSet2s);
-    System.out.println(studentSet1s);
+    System.out.println("09c. " + studentSet1s);
 
 
 
