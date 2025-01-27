@@ -174,10 +174,10 @@ public class CW20250117StreamEx {
       new Person("Bob", 25),
       new Person("Charlie", 30)
       );
-    //Map<Person.age, List<Person>> ageGroup = persons.stream()
-    //  .collect(Collectors.groupingBy(e -> e.getAge()));
-    //System.out.println(ageGroup);
 
+    Map<Integer, List<Person>> ageGroup = persons.stream()
+      .collect(Collectors.groupingBy(e -> e.getAge()));
+    System.out.println("09. " + ageGroup);
     // // Output: {30=[Alice, Charlie], 25=[Bob]} (Map)
 
     // 10. Partitioning and Collecting to a Map (Partition by Gender)
@@ -194,12 +194,13 @@ public class CW20250117StreamEx {
       new Staff("Charlie", Gender.Male)
       );
     //boolean
-    //boolean isFemale = staffs.stream()
-    //  .anyMatch(gender -> gender.contains("Female"));
-    //System.out.println(isFemale);
-    //Map<Boolean, List<Staff>> genderGroup = staffs.stream()
-    //  .collect(Collectors.partitioningBy(s -> s.getGender().contains(Gender.Female)));
-    //System.out.println(genderGroup);
+    boolean isMale = staffs.stream()
+      .anyMatch(gender -> gender.equals(Gender.Male));
+    System.out.println(isMale);
+    
+    Map<Boolean, List<Staff>> genderGroup = staffs.stream()
+      .collect(Collectors.partitioningBy(s -> s.getGender().equals(Gender.Male)));
+    System.out.println("10. " + genderGroup);
     // // Output: {false=[Alice], true=[Bob, Charlie]} (Map)
 
     // 11. Filtering, Mapping, and Collecting to a List
@@ -408,17 +409,27 @@ public class CW20250117StreamEx {
     // Handle the case where no such string exists using Optional.
     
     List<String> animals = Arrays.asList("cat", "tiger", "panda", "dog");
+    
+    //method 1 not good
     Optional<String> maxAnimals = animals.stream()
       .max((o1, o2) -> o1.compareTo(o2));
     System.out.println("25. " + maxAnimals);
+
+    //method 2
+    Optional<String> firstAnimals = animals.stream()
+      .filter(s -> s.length() > 4)
+      .findFirst();
+    System.out.println("25. " + firstAnimals);
     // Output: Optional[tiger]
 
     List<String> animals2 = Arrays.asList("cat", "dog", "bird");
-    //Optional<String> newAnimals2 = animals2.stream()
-    //  .filter(s -> s.length().contains("4"))
-    //  .forEach(e -> {
-    //    System.out.println(newAnimals2);
-    //  });
+    Optional<String> firstAnimals2 = animals2.stream()
+      .filter(s -> s.length() > 4)
+      .findAny();
+      
+    String longName = firstAnimals2.orElse("null");
+    System.out.println("25. " + firstAnimals2); //.empty
+    System.out.println("25. " + longName); //null
     // Output: Optional[null]
 
     // 26. Custom Collector
@@ -434,24 +445,13 @@ public class CW20250117StreamEx {
     // combined.
     
     List<String> keywords = Arrays.asList("stream", "filter", "map", "sorted", "collect");
-    Optional<String> MaxKeywords = keywords.stream()
-    .max((o1, o2) -> o1.compareTo(o2));
-    Optional<String> MinKeywords = keywords.stream()
-    .min((o1, o2) -> o1.compareTo(o2));
-    long countKeywords = keywords.stream()
-      .count();
     
-      List<String> counts = keywords.stream()
-      .filter(e -> e.length() > 0)
-      .peek(e -> System.out.println(e.length()))
-      .collect(Collectors.toList());
-
-    
-    System.out.println(MaxKeywords);
-    System.out.println(MinKeywords);
-    System.out.println(countKeywords);
-   
     //Aggregate Function: max(), min(), average(), sum(), count()
+    int sumLength = keywords.stream()
+      .mapToInt(String::length)
+      .sum();
+  
+    System.out.println("27. " + sumLength);
 
     // Output: 28
   
@@ -535,10 +535,7 @@ public static class Person{
 
   @Override
   public String toString(){
-    return "Person["
-      + "name=" + this.name
-      + ", age=" + this.age
-      + "]";
+    return this.name;
   }
 
 }
@@ -592,10 +589,7 @@ public static class Staff{
 
   @Override
   public String toString(){
-    return "Staff["
-      + "name=" + this.name
-      + ", gender=" + this.gender
-      + "]";
+    return this.name;
   }
 
 }

@@ -4,12 +4,18 @@ CREATE TABLE Adopters (
     age INT
 );
 
+select * from adopters;
+drop table adopters;
+
 CREATE TABLE Cats (
     id INT PRIMARY KEY,
-    breed VARCHAR,
+    breed VARCHAR(50),
     adopter_id INT, -- by default, FK allows null value
     FOREIGN KEY (adopter_id) REFERENCES Adopters (id)
 );
+
+select * from cats;
+drop table cats;
 
 INSERT INTO Adopters (id, name, age)
 VALUES

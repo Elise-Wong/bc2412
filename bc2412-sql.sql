@@ -301,4 +301,145 @@ select c.*, o.*
 from customers c left join orders o on c.id = o.customer_id
 where o.id is null; -- null 要用 is/is not
 
+select *
+from orders;
+
+-- add PK for customers
+ALTER TABLE customers ADD CONSTRAINT pk_customer_id PRIMARY KEY (id);
+ALTER TABLE orders ADD CONSTRAINT pk_customer_id PRIMARY KEY (id);
+-- add FK for orders
+ALTER TABLE orders ADD CONSTRAINT fk_customer_id FOREIGN KEY (customer_id) REFERENCES customers(id);
+
+-- Not allowed FK fail
+-- insert into orders values (7, 400.0, currenct_time(), 99)
+
+insert into orders (id, amount, order_date, customer_id) 
+values (7, 400.0, currenct_time(), 99);
+
+-- many to many table design
+-- e.g. students go to exam
+CREATE TABLE STUDENTS(
+	ID INT PRIMARY KEY AUTO_INCREMENT, -- NOT NULL + UNIQUE + INDEX
+	NAME VARCHAR(50) NOT NULL,
+    EMAIL VARCHAR(50) UNIQUE -- is it not null?
+);
+
+CREATE TABLE SUBJECTS(
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE STUDENT_SUBJECTS(
+	-- ID INT PRIMARY KEY AUTO_INCREMENT,
+    STUDENT_ID INT,
+    SUBJECT_ID INT,
+    PRIMARY KEY (STUDENT_ID, SUBJECT_ID),
+    FOREIGN KEY (STUDENT_ID) REFERENCES STUDENTS(ID), -- FK can be Null
+    FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECTS(ID)
+);
+
+select * from STUDENTS;
+select * from SUBJECTS;
+select * from STUDENT_SUBJECTS;
+
+drop table STUDENTS; -- you have to drop the table with FK first
+drop table SUBJECTS;
+drop table STUDENT_SUBJECTS;
+
+insert into STUDENTS (NAME, EMAIL)
+	values ('Ann', 'ann001@gmail.com');
+insert into STUDENTS (NAME, EMAIL)
+	values ('Ben', 'ben002@gmail.com');
+    
+insert into SUBJECTS (NAME) values ('Chinese');
+insert into SUBJECTS (NAME) values ('English');
+insert into SUBJECTS (NAME) values ('History');
+
+insert into STUDENT_SUBJECTS (STUDENT_ID, SUBJECT_ID) value (1, 3);
+insert into STUDENT_SUBJECTS (STUDENT_ID, SUBJECT_ID) value (1, 2);
+insert into STUDENT_SUBJECTS (STUDENT_ID, SUBJECT_ID) value (1, 1);
+insert into STUDENT_SUBJECTS (STUDENT_ID, SUBJECT_ID) value (2, 3);
+insert into STUDENT_SUBJECTS (STUDENT_ID, SUBJECT_ID) value (2, 2);
+insert into STUDENT_SUBJECTS (STUDENT_ID, SUBJECT_ID) value (2, 1);
+
+-- join 3 tables (暗藏innter join)
+select st.NAME, su.NAME
+from STUDENT_SUBJECTS ss, STUDENTS st, SUBJECTS su
+where ss.STUDENT_ID = st.ID
+and ss.SUBJECT_ID = su.ID
+order by st.NAME
+;
+
+-- view
+create or replace view vcustomer_orders  -- 紋身咁
+as
+select c.id as customer_id, c.first_name, c.last_name, c.email, o.amount, o.order_date, o.id as order_id
+from customers c inner join orders o on c.id = o.customer_id
+;
+
+-- when you select the view:
+-- 1. real time execution for the SQL behind the view. / up-to-date, did not save any data
+-- 2. when you modify the SQL behind view, you have to re-compile view to take effective.
+-- 3. View has its own access right (select), so that we can manage access right of tables across accounts.
+select * from vcustomer_orders;
+
+-- alter table 後補table
+-- trigger
+alter table customers add order_count INT;
+select * from customers;
+select * from orders;
+
+insert into orders (id, amount, order_date, customer_id) 
+values (7, 99.1, current_time(), 1);
+insert into orders (id, amount, order_date, customer_id) 
+values (8, 100.9, current_time(), 1);
+insert into orders (id, amount, order_date, customer_id) 
+values (9, 100.9, current_time(), 1);
+
+drop TRIGGER update_order_count;
+
+DELIMITER //
+
+CREATE TRIGGER update_order_count
+AFTER INSERT ON orders
+FOR EACH ROW
+BEGIN
+    -- TRIGGER CUSTOMER'S TRIGGER
+    UPDATE customers
+    SET order_count = ifnull(order_count,0) + 1
+    WHERE id = NEW.customer_id;
+END;
+//
+
+DELIMITER ;
+
+-- audit 睇番改左d咩
+select * from customers;
+
+create table table_logs(
+	id int primary key auto_increment,
+    table_name varchar(50),
+    column_name varchar(50),
+    old_value varchar(50),
+    new_value varchar(50)
+);
+
+drop table table_logs;
+
+DELIMITER //
+
+CREATE TRIGGER update_customers_data
+AFTER UPDATE ON customers
+FOR EACH ROW
+BEGIN
+    if (old.dob <> new.dob) then
+		insert into table_logs (table_name, column_name, old_value, new_value)
+        values ('CUSTOMERS', 'DOB', old.dob, new.dob);
+	end if;
+END;
+//
+
+DELIMITER ;
+
+UPDATE CUSTOMERS SET DOB = '2000-01-01' WHERE ID = 1;
 
