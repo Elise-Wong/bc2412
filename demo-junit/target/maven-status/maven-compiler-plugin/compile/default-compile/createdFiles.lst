@@ -1,2 +1,4 @@
 com\bootcamp\junit\App.class
+com\bootcamp\junit\Staff$StaffBuilder.class
+com\bootcamp\junit\Staff.class
 com\bootcamp\junit\Calculator.class
