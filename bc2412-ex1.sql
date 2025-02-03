@@ -154,20 +154,20 @@ select first_name, last_name, department_id
 from employees
 ;
 
--- line 8, point 5 x
+-- line 8, point 5
 with work_countries as(
 	select l.location_id, c.country_name, l.country_id
 	from locations l inner join countries c
 	on l.country_id = c.country_id
 ), work_place as(
-	select d.department_id, wc.location_id, wc.country_name
-    from departments d inner join work_countries wc
-    on d.location_id = wc.location_id
+	select d.department_id, d.location_id, e.first_name, e.last_name, e.job_id
+    from departments d inner join employees e
+    on d.department_id = e.department_id
 )
-select e.first_name, e.last_name, e.department_id
-from employees e inner join work_place wp
-on e.department_id = wp.department_id
-where wp.country_id = 'JP'
+select wp.first_name, wp.last_name, wp.job_id, wp.department_id
+from work_countries wc inner join work_place wp
+on wc.location_id = wp.location_id
+where wc.country_name = 'Japan'
 ;
 
 -- line 9, point 6
