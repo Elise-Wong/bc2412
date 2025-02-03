@@ -109,7 +109,7 @@ public class ArrayListExercise20250109 {
     newCountries.add("India");
     System.out.println("04c. " + newCountries);
     //countries.addAll(2, newCountries);
-    //countries.add("India");
+    countries.add("India");
 
     //04d x
     System.out.println("04d. " + countries);
@@ -154,10 +154,34 @@ public class ArrayListExercise20250109 {
       for (int sss : set2)
       if (ss == sss){
         found = true;
+        //set1.retainAll(set2);
         break;
       }
     }
-    
+    //System.out.println(found);
+
+    //HashSet<Integer> common = new HashSet<>();
+    //for (int i : set1){
+    //  set1.add(i);
+    //}
+    //for (int i : set2){
+    //  set2.add(i);
+    //}
+    //set1.retainAll(set2);   //retainAll: rerice itselft
+    //System.out.println(set1);
+    //for (int i = 0; i < set1.length; i++){
+      
+    //}
+    //  for (int j = 0; j < set2; j++){
+    //    if (set1[i] = set2[j]){
+    //      common.add(set1[i]);
+    //    }
+    //  }
+    //}
+    //System.out.println(common);
+
+    //HashSet<Integer> intersection = SetUtils.intersection(set1, set2);
+    //System.out.println(intersection);
 
 
     //06e x

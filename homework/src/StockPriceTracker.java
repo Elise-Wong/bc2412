@@ -86,7 +86,7 @@ public class StockPriceTracker {
     tracker.addRecord(LocalDate.of(2024, 1, 2), 200.75);
     tracker.addRecord(LocalDate.of(2024, 1, 3), 150.25);
     tracker.addRecord(LocalDate.of(2024, 1, 4), 199.99);
-    System.out.println("Latest price: $" + tracker.getLatestPrice()); // Output: 150.25
+    System.out.println("Latest price: $" + tracker.getLatestPrice()); // Output: 199.99
     System.out.println("Highest price: $" + tracker.getHighestPrice()); // Output: 200.75
 
 

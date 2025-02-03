@@ -448,11 +448,9 @@ public class CW20250117StreamEx {
     
     //Aggregate Function: max(), min(), average(), sum(), count()
     int sumLength = keywords.stream()
-      .mapToInt(String::length)
+      .mapToInt(String::length) //.mapToInt(e -> e.length())  // ! return IntStream
       .sum();
-  
     System.out.println("27. " + sumLength);
-
     // Output: 28
   
   }
