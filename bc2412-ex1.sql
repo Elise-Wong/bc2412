@@ -134,6 +134,8 @@ insert into jobs (job_id, job_title, min_salary, max_salary)
 	values ('MK_REP', 'Marketing Representative', 9000, 17000);
 insert into jobs (job_id, job_title, min_salary, max_salary)
 	values ('IT_PROG', 'IT Programmer', 17000, 17000);
+insert into jobs (job_id, job_title, min_salary, max_salary)
+	values ('MK_MGR', 'Marketing Representative', 90000, 170000);
 
 
 insert into employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id)
@@ -144,6 +146,8 @@ insert into employees (employee_id, first_name, last_name, email, phone_number, 
 	values (102, 'Lex', 'De Haan', 'LDEHAAN', '515-1234569', '1987-06-19', 'IT_PROG', 17000, 0, 108, 30);
 insert into employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id)
 	values (103, 'Alexander', 'Hunold', 'AHUNOLD', '590-4234567', '1987-06-20', 'MK_REP', 9000, 0, 105, 20);
+insert into employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id)
+	values (104, 'Ann', 'Hu', 'ANNHU', '590-4234568', '1987-06-21', 'MK_MGR', 90000, 0, 201, 20);
     
     
 insert into job_history (employee_id, start_date, end_date, job_id, department_id)
@@ -156,6 +160,7 @@ insert into job_history (employee_id, start_date, end_date, job_id, department_i
 	values (100, '1996-02-17', '1999-12-19', 'ST_CLERK', 30);
 insert into job_history (employee_id, start_date, end_date, job_id, department_id)
 	values (102, '1998-03-24', '1999-12-31', 'MK_REP', 20);
+    
     
 -- line 6, point 3
 select l.location_id, l.street_address, l.city, l.state_province, c.country_name
@@ -201,3 +206,35 @@ on d.department_id = e.department_id
 group by e.department_id
 ;
 
+-- line 12, point 9
+select h.employee_ID, j.job_title
+, end_date - start_date as number_of_days
+from job_history h inner join jobs j
+on h.job_id = j.job_id
+where h.department_id = 30
+;
+
+-- line 13, point 10
+with work_countries as(
+	select l.location_id, l.city, c.country_name, l.country_id
+	from locations l inner join countries c
+	on l.country_id = c.country_id
+), work_place as(
+	select d.location_id, d.department_id, d.department_name, d.manager_id 
+    , concat(e.first_name, ' ',e.last_name ) as manager_name
+    from departments d inner join employees e
+	on d.manager_id = e.manager_id
+)
+select wp.department_name, wp.manager_name, wc.city, wc.country_name
+from work_countries wc inner join work_place wp
+on wc.location_id = wp.location_id
+;
+
+-- line 14 point 11
+select d.department_name, round((avg(e.salary)),2) as average_salary
+from employees e inner join departments d
+on e.department_id = d.department_id
+group by e.department_id
+;
+
+-- line 15 point 12
