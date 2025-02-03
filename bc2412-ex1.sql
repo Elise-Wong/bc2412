@@ -224,7 +224,12 @@ group by e.department_id
 ;
 
 -- line 15 point 12
-
+alter table jobs
+drop column min_salary, 
+drop column max_salary,
+add column grade_level varchar(2),
+add constraint FK_job_grade Foreign Key (grade_level) references job_grades(grade_level)
+;
 
 
 -- **
@@ -238,4 +243,5 @@ select * from employees;
 select * from job_history;
 select * from job_grades;
 
+drop table job_grades;
 drop database Ex1;
