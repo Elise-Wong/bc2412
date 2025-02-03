@@ -72,25 +72,6 @@ create table job_grades(
     highest_sal int
 );
 
-select * from regions;
-select * from countries;
-select * from locations;
-select * from departments;
-select * from jobs;
-select * from employees;
-select * from job_history;
-select * from job_grades;
-
-drop table regions;
-drop table countries;
-drop table locations;
-drop table departments;
-drop table jobs;
-drop table employees;
-drop table job_history;
-drop table job_grades;
-
-drop database Ex1;
 
 insert into regions (region_id, region_name)
 	values (1, 'Europe');
@@ -179,7 +160,7 @@ with work_countries as(
 	from locations l inner join countries c
 	on l.country_id = c.country_id
 ), work_place as(
-	select d.department_id, wc.location_id
+	select d.department_id, wc.location_id, wc.country_name
     from departments d inner join work_countries wc
     on d.location_id = wc.location_id
 )
@@ -189,13 +170,18 @@ on e.department_id = wp.department_id
 where wp.country_id = 'JP'
 ;
 
--- line 9, point 6 x
+-- line 9, point 6
+select e.employee_id, e.last_name, e.manager_id, m.last_name as manager_last_name
+from employees e left join employees m
+on e.manager_id = m.manager_id
+;
 
 
--- line 10, point 7 vx
-select first_name, last_name, hire_date
-from employees e
-where hire_date > '1987-06-19'
+-- line 10, point 7
+select e.first_name, e.last_name, e.hire_date
+from employees e, employees d
+where e.hire_date > d.hire_date -- '1987-06-19'
+and d.last_name = 'De Haan'
 ;
 
 -- line 11, point 8
@@ -238,3 +224,18 @@ group by e.department_id
 ;
 
 -- line 15 point 12
+
+
+
+-- **
+
+select * from regions;
+select * from countries;
+select * from locations;
+select * from departments;
+select * from jobs;
+select * from employees;
+select * from job_history;
+select * from job_grades;
+
+drop database Ex1;
