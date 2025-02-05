@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 // ! mvn package: "mvn test" + package jar
 // ! mvn install: "mvn package" + install jar to m2
 
-// ! Regression test
+// ! Regression test (for Day 2 enhancement)
+// ! TDD (test case first) -> rapidly define all test cases without main code.
 // mvn test -> locate "@Test" annotation
 // Maven create a test object to invoke testSum()
 

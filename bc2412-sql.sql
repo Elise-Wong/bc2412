@@ -15,7 +15,7 @@ create table customers (
 	first_name varchar(20), 
     last_name varchar(20),
     email varchar(50),
-    dob date
+    dob date -- yyyy-mm-yy
 );
 
 -- * means select all columns
@@ -424,6 +424,7 @@ create table table_logs(
     new_value varchar(50)
 );
 
+select * from table_logs;
 drop table table_logs;
 
 DELIMITER //
@@ -442,4 +443,5 @@ END;
 DELIMITER ;
 
 UPDATE CUSTOMERS SET DOB = '2000-01-01' WHERE ID = 1;
+
 

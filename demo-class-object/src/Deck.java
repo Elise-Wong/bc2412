@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class Deck {
   //52 cards of poker
   
@@ -11,7 +14,7 @@ public class Deck {
     this.pokers = new Poker[Poker.RANKS.length * Poker.SUITES.length]; //13*4=52
     //less loop
     int idx = 0;
-    for (char rank : Poker.RANKS){
+    for (Rank rank : Poker.RANKS){
       for (char suite : Poker.SUITES){
         this.pokers[idx++] = new Poker(rank, suite);
         }
@@ -26,6 +29,10 @@ public class Deck {
     return this.pokers.length;
   }
 
+  public List<Poker> getPokers(){
+    return Arrays.asList(this.pokers);
+  }
+
 
 
   //Setter
@@ -37,8 +44,8 @@ public class Deck {
     System.out.println(Math.PI); //public & static final
 
 
-    Card card = new Card('A', 'S');
-    Card c2 = new Card('A', 'S');
+    Poker card = new Poker(Rank.ACE, 'S');
+    Poker c2 = new Poker(Rank.ACE, 'S');
     
 
   }
