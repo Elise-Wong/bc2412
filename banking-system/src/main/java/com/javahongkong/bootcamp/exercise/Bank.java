@@ -7,30 +7,45 @@ public class Bank implements BankInterface {
 
 	public Bank() {
 		// complete the function
+		this.accounts = new LinkedHashMap<>(); // !
 	}
 
 	public Account getAccount(Long accountNumber) {
 		// complete the function
-		return null;
+		// 對key搵value.....
+		return this.accounts.get(accountNumber);
+		//return null;
 	}
+
+	// !
+	private static Long accountNumber = 0L; //Variab, les is figure only // this is for openXXAccount
 
 	public Long openCommercialAccount(Company company, int pin, double startingDeposit) {
 		// complete the function
-		return -1L;
+		//get & default
+		//Long (key, value) ... (key: check ++accNum, value: 就自動變)
+		 this.accounts.put(++accountNumber, new CommercialAccount(company, accountNumber, pin, startingDeposit));
+		 return accountNumber;
+		//return -1L;
 	}
 
 	public Long openConsumerAccount(Person person, int pin, double startingDeposit) {
 		// complete the function
-		return -1L;
+		this.accounts.put(++accountNumber, new ConsumerAccount(person, accountNumber, pin, startingDeposit));
+		return accountNumber;
+		//return -1L;
 	}
 
 	public boolean authenticateUser(Long accountNumber, int pin) {
 		// complete the function
+		
+
 		return true;
 	}
 
 	public double getBalance(Long accountNumber) {
 		// complete the function
+		//return this.accounts.get(getBalance);
 		return -1.0;
 	}
 
@@ -40,6 +55,7 @@ public class Bank implements BankInterface {
 
 	public boolean debit(Long accountNumber, double amount) {
 		// complete the function
+		
 		return false;
 	}
 }

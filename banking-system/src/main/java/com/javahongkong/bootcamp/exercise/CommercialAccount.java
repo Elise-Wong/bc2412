@@ -24,7 +24,7 @@ public class CommercialAccount extends Account{
 	 */
 	protected void addAuthorizedUser(Person person) {
 		// complete the function
-		List<Person> 
+		//List<Person> 
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class CommercialAccount extends Account{
 		if (!(obj instanceof Person))
 			return false;
 		Person person = (Person) obj;
-			return Objects.equals(person.getIdNumber, this.accountNumber);
+			return Objects.equals(person.getIdNumber, accountNumber);
 	}
 
 }
