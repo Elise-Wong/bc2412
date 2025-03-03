@@ -1,6 +1,6 @@
 package com.javahongkong.bootcamp.exercise;
 
-public class Person extends AccountHolder{
+public class Person extends AccountHolder{ //考抽離
 	private String firstName;
 	private String lastName;
 	// private int idNumber;

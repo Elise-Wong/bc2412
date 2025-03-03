@@ -17,24 +17,30 @@ public class Transaction implements TransactionInterface {
 	 */
 	public Transaction(Bank bank, Long accountNumber, int attemptedPin) throws Exception {
 		// complete the function
+
+		//this.attemptedPin = attemptedPin;
+		if (!bank.getAccount(accountNumber).validatePin(attemptedPin)) {
+			throw new Exception();
+		}
 		this.bank = bank;
 		this.accountNumber = accountNumber;
-		//this.attemptedPin = attemptedPin;
-
 	}
 
 	public double getBalance() {
 		// complete the function
-		return -1.0;
+		return bank.getBalance(accountNumber);
+		//return -1.0;
 	}
 
 	public void credit(double amount) {
 		// complete the function
+		bank.credit(accountNumber, amount);
 		
 	}
 
 	public boolean debit(double amount) {
 		// complete the function
-		return true;
+		return bank.debit(accountNumber, amount);
+		//return true;
 	}
 }

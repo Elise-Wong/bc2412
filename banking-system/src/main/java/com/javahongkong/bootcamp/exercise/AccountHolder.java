@@ -23,4 +23,21 @@ public abstract class AccountHolder {
 
 	// public abstract int getSomething();
 
+	@Override // for Coomercial Account (?)
+	public boolean equals(Object obj){
+		if (this == obj){
+			return true;
+		}
+		if (!(obj instanceof AccountHolder)){
+			return false;
+		}
+		AccountHolder accountHolder = (AccountHolder) obj;
+		return Object.equals(this.idNumber, accountHolder.getIdNumber());
+	}
+
+	@Override
+	public int hashCode(){
+
+	}
+
 }

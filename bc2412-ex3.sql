@@ -102,18 +102,19 @@ INSERT INTO INVOICE(ID, INVOICE_NUMBER, CUSTOMER_ID, USER_ACCOUNT_ID, TOTAL_PRIC
 
 -- X
 INSERT INTO INVOICE_ITEM(ID, INVOICE_ID, PRODUCT_ID, QUANTITY, PRICE, LINE_TOTAL_PRICE) VALUES
-	(1, 1, 1, 20, 65.00, 1300),
-    (2, 1, 7, 2, 68.00, 136),
-    (3, 2, 5, 10, 10.00, 1000),
-    (4, 3, 10, 2, 180.00, 360),
-    (5, 4, 1, 5, 65.00, 325),
-    (6, 4, 2, 10, 95.00, 950),
-    (7, 4, 5, 4, 100.00, 400),
-    (8, 5, 10, 100, 95.00, 9500),
-    (9, 6, 4, 6, 25.00, 150)
+	(1, 1, 1, 20, 65.00, 1300.00),
+    (2, 1, 7, 2, 68.00, 136.00),
+    (3, 2, 5, 10, 10.00, 1000.00),
+    (4, 3, 10, 2, 180.00, 360.00),
+    (5, 4, 1, 5, 65.00, 325.00),
+    (6, 4, 2, 10, 95.00, 950.00),
+    (7, 4, 5, 4, 100.00, 400.00),
+    (8, 5, 10, 100, 95.00, 9500.00),
+    (9, 6, 4, 6, 25.00, 150.00)
 ;
 
 -- 1c
+-- each customer without an invoice
 SELECT C.ID AS CUSTOMER_ID, C.CUSTOMER_NAME, I.INVOICE_NUMBER
 FROM CUSTOMER C LEFT JOIN INVOICE I
 ON C.ID = I.CUSTOMER_ID
@@ -122,6 +123,7 @@ ORDER BY C.ID
 ;
 
 -- X
+-- each product without an invoice
 SELECT P.ID, P.PRODUCT_NAME, II.INVOICE_ID
 FROM PRODUCT P LEFT JOIN INVOICE_ITEM II
 ON P.ID = II.PRODUCT_ID
@@ -135,6 +137,83 @@ ON I.ID = II.INVOICE_ID
 WHERE II.INVOICE_ID IS NULL
 ;
 
+-- 1c ans
+select 'customer', c.id, c.customer_name
+from customer c
+where not exists (select *
+	from invoice i
+    where i.customer_id = id)
+union
+select 'product', p.id, p.product_name
+from product p
+where not exists (select * 
+	from invoice_item t
+    where t.product_id = p.id);
+
+-- 2
+CREATE TABLE DEPARTMENT (
+	ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    DEPT_CODE VARCHAR(3) NOT NULL, 
+	DEPT_NAME VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE EMPLOYEE (
+	ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    EMPLOYEE_NAME VARCHAR(30) NOT NULL,
+    SALARY NUMERIC(8, 2),
+    PHONE NUMERIC(15),
+    EMAIL VARCHAR(50),
+    DEPT_ID INTEGER NOT NULL,
+    FOREIGN KEY (ID) REFERENCES DEPARTMENT(ID)
+);
+
+-- 2a
+INSERT INTO DEPARTMENT (ID, DEPT_CODE, DEPT_NAME) VALUES
+	(1, 'HR', 'HUMAN RESOURCES'),
+    (2, '9UP', '9UP DEPARTMENT'),
+    (3, 'SA', 'SALES DEPARTMENT'),
+    (4, 'IT', 'INFORMATION TECHNOLOGY DEPARTMENT')
+;
+
+INSERT INTO EMPLOYEE (ID, EMPLOYEE_NAME, SALARY, PHONE, EMAIL, DEPT_ID) VALUES
+	(1, 'JOHN', 20000, 90234567, 'JOHN@GMAIL.COM', 1),
+	(2, 'MARY', 10000, 90234561, 'MARY@GMAIL.COM', 1),
+    (3, 'STEVE', 30000, 90234562, 'STEVE@GMAIL.COM', 3),
+    (4, 'SUNNY', 40000, 90234563, 'SUNNY@GMAIL.COM', 4)
+;
+
+
+SELECT D.DEPT_CODE, COUNT(E.DEPT_ID) AS NUMBER_OF_EMPLOYEES
+FROM DEPARTMENT D LEFT JOIN EMPLOYEE E
+ON D.ID = E.DEPT_ID
+GROUP BY D.DEPT_CODE
+ORDER BY D.DEPT_CODE
+;
+
+-- 2b
+INSERT INTO DEPARTMENT VALUES
+	(5, 'IT', 'INFORMATION TECHNOLOGY DEPARTMENT')
+;
+DELETE FROM DEPARTMENT WHERE ID = 5;
+
+-- ?
+DELIMITER //
+
+CREATE TRIGGER update_customers_data
+AFTER UPDATE ON customers
+FOR EACH ROW
+BEGIN
+    if (old.dob <> new.dob) then
+		insert into table_logs (table_name, column_name, old_value, new_value)
+        values ('CUSTOMERS', 'DOB', old.dob, new.dob);
+	end if;
+END;
+//
+
+DELIMITER ;
+
+UPDATE CUSTOMERS SET DOB = '2000-01-01' WHERE ID = 1;
+
 
 -- **
 select * from city;
@@ -142,6 +221,9 @@ select * from customer;
 select * from product;
 select * from invoice;
 select * from invoice_item;
+
+select * from department;
+select * from employee;
 
 drop table invoice_item;
 drop database EX3;

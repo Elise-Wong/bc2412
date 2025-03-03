@@ -17,6 +17,7 @@ public class CommercialAccount extends Account{
 	public CommercialAccount(Company company, Long accountNumber, int pin, double startingDeposit) {
 		// complete the function
 		super(company, accountNumber, pin, startingDeposit);
+		this.authorizedUsers = new ArrayList<>(); //!
 	}
 
 	/**
@@ -25,6 +26,7 @@ public class CommercialAccount extends Account{
 	protected void addAuthorizedUser(Person person) {
 		// complete the function
 		//List<Person> 
+		this.authorizedUsers.add(person);
 	}
 
 	/**
@@ -35,8 +37,12 @@ public class CommercialAccount extends Account{
 	public boolean isAuthorizedUser(Person person) {
 		// complete the function
 		//if ()
-			return true;
 
+		for (Person p : authorizedUsers){
+			if (p.equals(person))
+			return true;
+		}
+			return false;
 	}
 
 	@Override
