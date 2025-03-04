@@ -80,6 +80,39 @@ JOIN players p ON p.player_id =
     END;
 
 
+-- ans
+with score_board as (
+	select p.group_id, m.first_player as player_id, m.first_score as score
+    from matches m, players p
+    where m.first_player = p.player_id
+    union all
+    select p2.group_id, m2.second_player as player_id, m2.second_score as score
+    from matches m2, players p2
+    where m2.second_player = p2.player_id
+    union all
+    select p3.group_id, p3.player_id, 0 as score
+    from players p3
+    where not exists (select 1 
+						from matches m3 
+						where m3.second_player = p3.player_id 
+                        or m3.first_player = p3.player_id)
+), player_score_board as (
+		select group_id, player_id, sum(score) as player_score
+        from score_board
+        group by group_id, player_id
+), all_ranks as (
+		select row_number() over (partition by s.group_id 
+									order by s.player_score desc, s.player_id asc) as group_rank
+		, s.*
+        from player_score_board s
+), group_winner as (
+		select group_id, player_id
+        from all_ranks
+        where group_rank = 1
+)
+select *
+from group_winner
+;
 
 
 
