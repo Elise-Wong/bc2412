@@ -49,9 +49,9 @@ CREATE TABLE INVOICE(
 CREATE TABLE INVOICE_ITEM(
 	ID INT PRIMARY KEY,
     INVOICE_ID INT,
-    FOREIGN KEY (ID) REFERENCES INVOICE(ID),
+    FOREIGN KEY (INVOICE_ID) REFERENCES INVOICE(ID),
     PRODUCT_ID INT,
-    FOREIGN KEY (ID) REFERENCES PRODUCT(ID),
+    FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT(ID),
     QUANTITY INT,
     PRICE DECIMAL(8,2),
     LINE_TOTAL_PRICE DECIMAL(8,2)
@@ -100,8 +100,8 @@ INSERT INTO INVOICE(ID, INVOICE_NUMBER, CUSTOMER_ID, USER_ACCOUNT_ID, TOTAL_PRIC
     (6, 'INV2019-006', 4, 2, 150.00, STR_TO_DATE('2019-07-20 15:08:15', '%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2019-07-27 15:08:15', '%Y-%m-%d %H:%i:%s'), STR_TO_DATE('2019-07-27 13:42:45', '%Y-%m-%d %H:%i:%s'), CURRENT_TIME(), STR_TO_DATE('2019-07-27 14:11:20', '%Y-%m-%d %H:%i:%s'))
 ;
 
--- X
-INSERT INTO INVOICE_ITEM(ID, INVOICE_ID, PRODUCT_ID, QUANTITY, PRICE, LINE_TOTAL_PRICE) VALUES
+
+INSERT INTO INVOICE_ITEM VALUES
 	(1, 1, 1, 20, 65.00, 1300.00),
     (2, 1, 7, 2, 68.00, 136.00),
     (3, 2, 5, 10, 10.00, 1000.00),
@@ -112,6 +112,7 @@ INSERT INTO INVOICE_ITEM(ID, INVOICE_ID, PRODUCT_ID, QUANTITY, PRICE, LINE_TOTAL
     (8, 5, 10, 100, 95.00, 9500.00),
     (9, 6, 4, 6, 25.00, 150.00)
 ;
+
 
 -- 1c
 -- each customer without an invoice
@@ -142,7 +143,7 @@ select 'customer', c.id, c.customer_name
 from customer c
 where not exists (select *
 	from invoice i
-    where i.customer_id = id)
+    where i.customer_id = c.id)
 union
 select 'product', p.id, p.product_name
 from product p
